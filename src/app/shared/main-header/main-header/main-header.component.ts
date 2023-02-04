@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router} from '@angular/router';
 import { PagedataService } from 'src/app/services/pagedata.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 
@@ -12,7 +13,9 @@ export class MainHeaderComponent implements OnInit {
   loggedUserInfo:any;
   pageInfo: any;
   constructor(private profile:ProfileService,
-    private pagedataService:PagedataService,) { }
+    private pagedataService:PagedataService,
+    private routes: Router,
+    ) { }
 
   ngOnInit(): void {
     this.pagedataService.currentValue.subscribe((res:any)=>{
@@ -29,7 +32,10 @@ export class MainHeaderComponent implements OnInit {
 
   logout()
   {
-   // this.routes.navigate[]
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('token');
+    this.routes.navigate(['login'])
   }
 
 }
