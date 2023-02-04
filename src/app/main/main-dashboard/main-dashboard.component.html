@@ -3,18 +3,22 @@
     <div class="row mb-0">
       
         <div class="col-md-4">
-            <div class="card assetCard" (click)="showAssetDetails()">
-                <div class="card-body">
-                    
-                    <div style="display: inline-block;">
-                        <img src="../../../assets/images/feature-img-3.jpg" alt="" class="image" style="border-radius: 50%;">
+            <div class=" mb-2" *ngFor="let item of data">
+                <div class="card assetCard" (click)="showAssetDetails(item)">
+                    <div class="card-body">
+                        
+                        <div style="display: inline-block;">
+                            <img *ngIf="item.user_photo == null" src="../../../assets/images/feature-img-3.jpg" alt="" class="image" style="border-radius: 50%;">
+                            <img *ngIf="item.user_photo != null" src="{{BaseUrl}}{{item.user_photo}}" alt="" class="image" style="border-radius: 50%;">
+                        </div>
+                        <span style="font-weight: bold; margin-left:10px;">{{item.vehicle_number}}</span>
+                      
+                      <p class="card-text ml-5" style="margin-left: 60px;">{{item.vehicle_type}}</p>
+                     
                     </div>
-                    <span style="font-weight: bold; margin-left:10px;">Assets</span>
-                  
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                 
-                </div>
-              </div>
+                  </div>
+            </div>
+            
         </div>
         <div class="col-md-8">
             <mat-card class="pb-0 mat-elevation-z8 mapCard">

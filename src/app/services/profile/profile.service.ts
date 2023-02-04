@@ -21,6 +21,12 @@ export class ProfileService {
     // console.log("in LoginUser service function",login)
     return this.http.get(`${this.BaseUrl}/user_details/${userId}`, {headers:header});
   }
+  getAllAssets(): Observable<any>{
+    var header = new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem('token'));
+    const userId = localStorage.getItem('userId')
+    // console.log("in LoginUser service function",login)
+    return this.http.get(`${this.BaseUrl}/asset/${userId}`, {headers:header});
+  }
   updateUser(user:any):Observable<any>{
     return this.http.put(`${this.BaseUrl}/user`,user);
   }
