@@ -15,6 +15,7 @@ import { AlertsComponent } from './alerts/alerts.component';
 import { AssetDetailComponent } from './asset-detail/asset-detail.component';
 
 
+
 @NgModule({
   declarations: [
     MainComponent,
