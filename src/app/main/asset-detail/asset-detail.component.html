@@ -1,0 +1,35 @@
+<div>
+    <button  class="float-end base-button p-3" style="border-radius: 50%;"  data-bs-toggle="modal" data-bs-target="#addChargingStationModal" id="#addChargingStationModal"> +
+    </button>
+</div>
+<div class="container-fluid ">
+    
+
+    <div class="row">
+<div class="col-xxl-8 col-xl-8 col-lg-8 col-md-12 col-sm-12 pt-2 px-3">
+
+    <div class="card assetCard" >
+        <div class="card-body">
+            
+            <div style="display: inline-block;">
+                <img src="userInfo.user_photo" alt="" class="image" style="border-radius: 50%;">
+            </div>
+            <span style="font-weight: bold; margin-left:10px;">Asset Name</span>
+          
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+         
+        </div>
+      </div>
+
+</div>
+<div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 pt-2 px-3">
+           
+    <mat-card
+    class="mat-elevation-z8 "> <!-- <mat-card-title class="h6 d-flex"><mat-icon >info</mat-icon><span class="mt-1 mx-2">User Info</span></mat-card-title> -->
+    <mat-card-content mat-card-image class="px-3 pt-4">
+        <div [innerHTML]="mapElement"></div>
+    </mat-card-content>
+</mat-card>
+</div>
+</div>
+</div>

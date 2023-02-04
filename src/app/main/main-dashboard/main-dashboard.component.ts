@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router, RoutesRecognized } from '@angular/router';
 import { PagedataService } from 'src/app/services/pagedata.service';
+
 
 @Component({
   selector: 'app-main-dashboard',
@@ -7,11 +9,16 @@ import { PagedataService } from 'src/app/services/pagedata.service';
   styleUrls: ['./main-dashboard.component.css']
 })
 export class MainDashboardComponent implements OnInit {
+  // @Input() vehicleImg:string = "src/assets/images/carImg.jpeg";
   Locations: any=[];
   evseList: any=[];
+  iconBase =
+    "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
   data:any=[
     {
         "charger_city": "nashik",
+        "lat":"20.705350000000067",
+        "log":"77.00218000000007",
         "charger_location": "(20.705350000000067, 77.00218000000007)",
         "created_at": "2022-10-06 13:37:43.429749",
         "location_description": "vidarbh",
@@ -35,6 +42,8 @@ export class MainDashboardComponent implements OnInit {
     },
     {
         "charger_city": "dadar",
+        "lat":"18.940170000000023",
+        "log":"72.83489000000003  ",
         "charger_location": "(18.940170000000023, 72.83489000000003)",
         "created_at": "2022-10-06 09:52:41.907482",
         "location_description": "good place",
@@ -60,6 +69,8 @@ export class MainDashboardComponent implements OnInit {
         "charger_location": "(18.504210000000057, 73.85286000000008)",
         "created_at": "2022-09-21 14:26:08.934433",
         "unit_state": "not charging\n",
+        "lat":"20.705350000000067",
+        "log":"77.00218000000007",
         "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4OS4xKTl6LKsow+NHUda\n+0MTjJjc1+T0eh/QDkOsoT2jdr3B/bZpX/r9QAoO1vPgj1ePgTZsNSscZNjIUl8u\nEdzqfpEUVQ1LUXQcXqltJD7zGTJCGv1S2zcu3yH4u9KDv9Tu0qTkauF1xKYq2kbY\n1TXKv7a649o8xwhnnlSli5GWa1r4yInXDo5dhQW40h28hpSNvza4ohfsBiL1agyu\n37wMqazCt/hYQMeCRHMr4tJGVfsoDx5XceS4JjOGEnW+VULvS2U5aT4DSWBW4iwU\nlAv89BxyrP061pE8QubOD/yVQG93UbnJ8NCysDudU6Zl3nPaoWT6IoUUoVRT4N/P\nUQIDAQAB\n-----END PUBLIC KEY-----\n",
         "certificate_id": "9dea49cc96f59dd6ecccd32d3c948596e317172bd2e1c2b05c974edb62a0eb9c",
         "certificate_pem": "-----BEGIN CERTIFICATE-----\nMIIDWjCCAkKgAwIBAgIVALvAyY+INvEKl+vH7LbBNgRjB0fHMA0GCSqGSIb3DQEB\nCwUAME0xSzBJBgNVBAsMQkFtYXpvbiBXZWIgU2VydmljZXMgTz1BbWF6b24uY29t\nIEluYy4gTD1TZWF0dGxlIFNUPVdhc2hpbmd0b24gQz1VUzAeFw0yMjA5MjExNDI0\nMDlaFw00OTEyMzEyMzU5NTlaMB4xHDAaBgNVBAMME0FXUyBJb1QgQ2VydGlmaWNh\ndGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDg5LjEpOXosqyjD40d\nR1r7QxOMmNzX5PR6H9AOQ6yhPaN2vcH9tmlf+v1ACg7W8+CPV4+BNmw1Kxxk2MhS\nXy4R3Op+kRRVDUtRdBxeqW0kPvMZMkIa/VLbNy7fIfi70oO/1O7SpORq4XXEpira\nRtjVNcq/trrj2jzHCGeeVKWLkZZrWvjIidcOjl2FBbjSHbyGlI2/NriiF+wGIvVq\nDK7fvAyprMK3+FhAx4JEcyvi0kZV+ygPHldx5LgmM4YSdb5VQu9LZTlpPgNJYFbi\nLBSUC/z0HHKs/TrWkTxC5s4P/JVAb3dRucnw0LKwO51TpmXec9qhZPoihRShVFPg\n389RAgMBAAGjYDBeMB8GA1UdIwQYMBaAFNqR3kpbUaRGuhV+4luyxySZTU1qMB0G\nA1UdDgQWBBQWLIJIElKh1zVgxuvEicjL1vU4/jAMBgNVHRMBAf8EAjAAMA4GA1Ud\nDwEB/wQEAwIHgDANBgkqhkiG9w0BAQsFAAOCAQEAfq6yr7oPBcid7M+J3OpZkCV6\nCCVVtv656ATdf1MBsspcIKxEEkFaDkpncrdpnUkNO8FMpuUzPssje/5QNoHP1z//\nVCohuhZERPX61TLPS5Ai4Ma59rKya13CzZbKuEs37k2bO2bB+uXSMLEBEhFeTttR\nAzeIS+moFsnh7T7KB07Ws/KViUxeWBTsZ2dXHs8wDxxym3JqKJx3PMB+uBvwoYdy\nvLuDCxxqS6rsyKfC0ThWQp2EXghzXnldiF8nWXCK6W3bid8BOcbqW8XZkxBZemok\nNZVdkbaypMRbQ+kTMSkRQlRRN7+8S4BfeGdobMQXUcI5hGo5lMCGEHe3TPM+Uw==\n-----END CERTIFICATE-----\n",
@@ -77,6 +88,8 @@ export class MainDashboardComponent implements OnInit {
     },
     {
         "charger_city": "nashik",
+        "lat":"25.269510000000025",
+        "log":"55.30884000000003",
         "charger_location": "(25.269510000000025, 55.30884000000003)",
         "created_at": "2022-10-05 18:21:53.927652",
         "location_description": "good place",
@@ -101,28 +114,33 @@ export class MainDashboardComponent implements OnInit {
   ]
 
   constructor(
-    private pageService:PagedataService
+    private pageService:PagedataService,
+    private router: Router,
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.generateLocationList();
     this.pageService.changeTitle('Dashboard');
     this.pageService.sharedMessage.subscribe((res: any) => {
       console.log('PUSHER-DATA',res)
     })
+
   }
   generateLocationList() {
     this.data.forEach((element: any) => {
       this.evseList = [];
-      let latLong = element.charger_location.split(', ');
-      let lat = latLong[0].replace('(', '');
-      let lng = latLong[1].replace(')', '');
+      // let latLong = element.charger_location.split(', ');
+      let lat = element.lat
+      let lng = element.log
       this.evseList.push(element.charger_nickname, lat, lng);
       this.Locations.push(this.evseList);
     });
     this.showMapLocation(this.Locations);
   }
-
+showAssetDetails() {
+  console.log('inside asset details');
+  this.router.navigate(['/asset'])
+}
   showMapLocation(data: any) {
     // Map Code
     let mapElement: HTMLElement = document.getElementById('map') as HTMLElement;
@@ -131,7 +149,7 @@ export class MainDashboardComponent implements OnInit {
     LocationsForMap = this.Locations;
 
     map = new google.maps.Map(mapElement, {
-      zoom: 2,
+      zoom: 3,
       center: new google.maps.LatLng(28.704, 77.25),
       mapTypeId: google.maps.MapTypeId.ROADMAP,
     });
@@ -144,6 +162,8 @@ export class MainDashboardComponent implements OnInit {
           LocationsForMap[i][1],
           LocationsForMap[i][2]
         ),
+        icon: this.iconBase + "parking_lot_maps.png",
+        label: "Test label",
         map: map,
       });
     }

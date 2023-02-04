@@ -12,6 +12,7 @@ import { MainHeaderComponent } from '../shared/main-header/main-header/main-head
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 import { AlertsComponent } from './alerts/alerts.component';
+import { AssetDetailComponent } from './asset-detail/asset-detail.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { AlertsComponent } from './alerts/alerts.component';
     MainHeaderComponent,
     MainDashboardComponent,
     AlertsComponent,
+    AssetDetailComponent,
     
   ],
   imports: [
