@@ -1,0 +1,26 @@
+.mapCard{
+    width: 100%;
+    height: 525px;
+    margin: 20px;
+    margin-top:0;
+}
+.assetCard {
+    border: none;
+    box-shadow: 10px 5px 5px #64458145;
+}
+.assetCard:hover{
+    background-color: #8a2be230;
+    /* transition: background-color 500ms linear; */
+    -webkit-transition: background-color 500ms linear;
+    -ms-transition: background-color 500ms linear;
+    transition: background-color 500ms linear;
+    border: none;
+    box-shadow: 10px 5px 5px #6445818c;
+    
+}
+
+.image{
+    width:50px ;
+    height:50px;
+    /* border-radius: 50%; */
+}

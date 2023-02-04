@@ -1,0 +1,41 @@
+<!-- <div id="map" style=" height: 100%;" mat-card-image="mat-card-image"></div> -->
+<div class="container-fluid">
+    <div class="row mb-0">
+      
+        <div class="col-md-4">
+            <div class="card assetCard">
+                <div class="card-body">
+                    
+                    <div style="display: inline-block;">
+                        <img src="../../../assets/images/feature-img-3.jpg" alt="" class="image" style="border-radius: 50%;">
+                    </div>
+                    <span style="font-weight: bold; margin-left:10px;">Assets</span>
+                  
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                 
+                </div>
+              </div>
+        </div>
+        <div class="col-md-8">
+            <mat-card class="pb-0 mat-elevation-z8 mapCard">
+                <mat-card-title class="h6 d-flex">
+                    <mat-icon>location_on</mat-icon>
+                    <span class="mt-1 mx-2">Map</span>
+                </mat-card-title>
+        
+                <div id="map" style=" height: 100%;" mat-card-image="mat-card-image"></div>
+        
+            </mat-card>
+        </div>
+        
+       
+    </div>
+    </div>
+
+<ngx-spinner bdcolor="rgba(255, 255, 255,0.85)" size="large" type="ball-spin-clockwise">
+    <div class="loader">
+        <div class="spinner " role="status">
+            <span class="visually-hidden mb-5">Loading...</span>
+        </div>
+    </div>
+</ngx-spinner>

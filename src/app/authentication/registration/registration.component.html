@@ -1,0 +1,165 @@
+<div class="container-fluid auth-background">
+    <div class="col-xxl-4 col-xl-5 col-lg-6 auth-card">
+     <div class="card p-4">
+         <div class="card-header">
+            <ul class="nav">
+                <li class="nav-item">
+                  <a class="nav-link active m-1" aria-current="page" routerLink="/login">Login</a>
+                </li>
+                <li [ngClass]="isRegistrationActive ? 'nav-item isActive':'nav-item'">
+                  <a  [ngClass]="isRegistrationActive ? 'nav-link m-1 isActive text-white':'nav-link m-1'" routerLink="/registration">Registration</a>
+                </li>
+            </ul>
+           
+        </div>
+        <!-- Registration Start-->
+        <div class="card-body pb-3 col-xl-12 col-md-10 col-sm-10 mx-auto" [hidden]="isShowRegistrationDiv">
+            <h3 class="card-title">Register for an Account</h3>
+            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                <div class="row ">
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        <label for="first_name" class="text-upercase mt-2">First Name</label>
+                        <input type="text" class="form-control mt-2"  name="first_name" formControlName="first_name">
+                        <span class="text-danger" *ngIf="(registrationFormControl.first_name.touched && registrationFormControl.first_name.invalid)"> First Name is required</span>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        <label for="last_name" class="text-upercase mt-2">Last Name</label>
+                        <input type="text" class="form-control mt-2"  name="last_name" formControlName="last_name">
+                        <span class="text-danger" *ngIf="(registrationFormControl.last_name.touched && registrationFormControl.last_name.invalid)"> Last Name is required</span>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                    <div class="col-6">
+                        <label for="username" class="text-upercase mt-2">Username</label>
+                        <input type="text" class="form-control mt-2"  name="username" formControlName="username">
+                        <span class="text-danger" *ngIf="(registrationFormControl.username.touched && registrationFormControl.username.invalid)"> Username is required</span>
+                    </div>
+                    <div class="col-6">
+                        <label for="account_name" class="text-upercase mt-2">Account Name</label>
+                        <input type="text" class="form-control mt-2"  name="account_name" formControlName="account_name">
+                        <span class="text-danger" *ngIf="(registrationFormControl.account_name.touched && registrationFormControl.account_name.invalid)"> Account Name is required</span>
+                    </div>
+                </div> -->
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        <label for="email" class="text-upercase mt-2">Email</label>
+                        <input type="email" class="form-control mt-2"  name="email" formControlName="email">
+                        <span class="text-danger" *ngIf="(registrationFormControl.email.touched && registrationFormControl.email.invalid)">Email is required</span>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        <label for="phone_number" class="text-upercase mt-2">Phone Number</label>
+                        <!-- <input type="text" class="form-control mt-2"  name="phone_number" formControlName="phone_number"> -->
+                        <!-- <span class="text-danger" *ngIf="(registrationFormControl.phone_number.touched && registrationFormControl.phone_number.invalid)">Phone Number is required</span> -->
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <select name="countryCode"  class="input-group-text form-control mt-2 text-muted" style="border-radius:0.375rem 0 0 0.375rem; background-color: white; " formControlName="countryCode" ngModel="+1" >
+                                    <option value="+1" hidden>+1</option>
+                                </select>
+                            </div>
+                            
+                            <input type="text" class="form-control mt-2"  name="phone_number" formControlName="phone_number">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        <label for="password" class="text-upercase mt-2">Password</label>
+                        <input type="{{fieldType}}" class="form-control mt-2"  name="password" formControlName="password" (change)="storePassword($event)"><!-- <i class="{{iconType}} hide-show-password-icon" aria-hidden="true" (click)="displayOrHidePassword(fieldType)"></i> -->
+                        <span class="text-danger" *ngIf="(registrationFormControl.password.touched && registrationFormControl.password.invalid)"> Password is required</span>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        <label for="c_password" class="text-upercase mt-2">Confirm Password</label>
+                        <input type="password" class="form-control mt-2"  name="c_password" formControlName="c_password" (change)="checkPassword($event)">
+                        <span class="text-danger" *ngIf="(!isMatchPassword && registrationFormControl.c_password.touched && registrationFormControl.c_password.invalid)"> Confirm password is required</span>
+                        <span class="text-danger" *ngIf="isMatchPassword">Confirm password must be same as password</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        <label for="postal_code" class="text-upercase mt-2">Postal Code</label>
+                        <input type="text" class="form-control mt-2"  name="postal_code" formControlName="postal_code">
+                        <span class="text-danger" *ngIf="(registrationFormControl.postal_code.touched && registrationFormControl.postal_code.invalid)">Postal Code is required</span>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        <label for="country" class="text-upercase mt-2">Country</label>
+                        <select name="country"  class="form-control mt-2" formControlName="country" ngModel="united states" >
+                            <option value="united states" >United states</option>
+                            <option value="canada">Canada</option>
+                        </select>
+                        <!-- <input type="email" class="form-control mt-2"  name="country" formControlName="country"> -->
+                        <span class="text-danger" *ngIf="(registrationFormControl.country.touched && registrationFormControl.country.invalid)">Country is required</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- <div class="col-12">
+                        <label for="email" class="text-upercase mt-2">Email</label>
+                        <input type="email" class="form-control mt-2"  name="email" formControlName="email">
+                        <span class="text-danger" *ngIf="(registrationFormControl.email.touched && registrationFormControl.email.invalid)">Email is required</span>
+                    </div> -->
+                    <!-- <div class="col-12">
+                        <label for="password" class="text-upercase mt-2">Password</label>
+                        <input type="password" class="form-control mt-2"  name="password" formControlName="password" (change)="storePassword($event)">
+                        <span class="text-danger" *ngIf="(registrationFormControl.password.touched && registrationFormControl.password.invalid)"> Password is required</span>
+                    </div>
+                    <div class="col-12">
+                        <label for="c_password" class="text-upercase mt-2">Confirm Password</label>
+                        <input type="password" class="form-control mt-2"  name="c_password" formControlName="c_password" (change)="checkPassword($event)">
+                        <span class="text-danger" *ngIf="(!isMatchPassword && registrationFormControl.c_password.touched && registrationFormControl.c_password.invalid)"> Confirm password is required</span>
+                        <span class="text-danger" *ngIf="isMatchPassword">Confirm password must be same as password</span>
+                    </div> -->
+                    <div class="row"  id="policy">
+                        <div class="col-xxl-1 col-xl-1 col-lg-1 col-sm-1 col-md-1 mt-3">
+                            <input  type="checkbox" class="mx-2"  name="policy" formControlName="policy" [value]="isAcceptedTermsAndConditions" (change)="isAcceptedTermsAndConditions=!isAcceptedTermsAndConditions" role="button">
+                        </div>
+                        <div class="col-xxl-11 col-xl-11 col-lg-10 col-sm-11 col-md-11 mt-3">
+                            <label for="policy">I Agree to the <a href="#PrivacyPolicy" class="text-decoration-none"> Privacy Policy </a> & <a href="#TermsOfService" class="text-decoration-none" > Terms of Service</a>.</label>
+                        </div>
+                    </div>
+                    <div class="row" id="is_subscribed_to_updates">
+                        <div class="col-xxl-1 col-xl-1 col-lg-1 col-sm-1 col-md-1 mt-1">
+                            <input  type="checkbox" class="mx-2"  name="is_subscribed_to_updates"   formControlName="is_subscribed_to_updates" value=true role="button" [(ngModel)]="!isAcceptedTermsAndConditions || isAcceptedTermsAndConditions">
+                        </div>
+                        <div class="col-xxl-11 col-xl-11 col-lg-10 col-sm-11 col-md-11 mt-1 float-end">
+                            <label for="policy"><small>Stay up to date on Intrinsic news and products.</small></label>
+                        </div>
+                    </div>
+                    <!-- {{registrationForm.value|json}}
+                    {{registrationForm.invalid}} -->
+                </div>
+                <!-- <div class="col-12">
+                    <label for="address" class="text-upercase mt-2">Address</label>
+                    <input type="text" class="form-control mt-2"  name="address" formControlName="address">
+                    <span class="text-danger" *ngIf="(registrationFormControl.address.touched && registrationFormControl.address.invalid)">Address is required</span>
+                </div> -->
+                <div class="col-12">
+                    <input type="submit" value="Register" class="btn btn-primary mt-3" [disabled]="(registrationForm.invalid || isAcceptedTermsAndConditions === false)" (click)="registrationOnSubmit=!registrationOnSubmit">
+                </div>
+            </form>
+        </div>
+        <!-- Registration End -->
+        <!-- Confirm Registration Start-->
+        <div class="card-body" [hidden]="isShowRegistrationConfirmDiv">
+            <h3 class="card-title">Verify Email Account</h3>
+            <form [formGroup]="registrationConfirmForm" (ngSubmit)="onSubmit()">
+                <div class="col-12">
+                    <label for="code" class="text-upercase mt-2">Verification Code</label>
+                    <input type="text" class="form-control mt-2"  name="code" formControlName="code">
+                    <span class="text-danger" *ngIf="(registrationConfirmFormControl.code.touched && registrationConfirmFormControl.code.invalid)">Verification Code is required</span>
+                </div>
+                <div class="col-12">
+                    <input type="submit" value="Verify" class="btn btn-primary mt-3" [disabled]="registrationConfirmFormControl.invalid" (click)="registrationConfirmOnSubmit=!registrationConfirmOnSubmit">
+                </div>
+            </form>
+        </div>
+        <!-- Confirm Registration End -->
+     </div>
+    </div>
+ </div>
+<!-- <app-spinner></app-spinner>   -->
+<ngx-spinner bdColor="rgba(255, 255, 255,0.85)" size="large"  type="ball-spin-clockwise">  
+    <div class="loader">
+      <div class="spinner " role="status">
+          <span class="visually-hidden mb-5">Loading...</span>
+      </div>
+    </div>
+</ngx-spinner> 

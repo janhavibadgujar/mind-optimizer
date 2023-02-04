@@ -1,0 +1,74 @@
+<!-- <mat-toolbar class="main-header">
+        
+    <div class="col-lg-2 col-md-3">
+        <input type="search" class="form-control search-bar" placeholder="Search Here..">
+        <i class='bx bx-search'></i>
+    </div>
+    <div class="col-lg-6 col-md-5 mx-auto">
+        <div class="user-info">
+            <i class='bx bx-bell notification mx-2 me-3' >
+                <span class="p-1 position-absolute top-0 start-n100 translate-middle badge rounded-circle bg-danger" style="font-size:0.6rem; width:1.2rem; height: 1.2rem; text-align: center; justify-content: center;">
+                    +2
+                  
+                </span>
+            </i>
+            <i class='bx bx-user user mx-2' *ngIf="loggedUserInfo?.user_profile === '' else imageDiv"></i>
+            <ng-template #imageDiv>
+              
+            </ng-template>
+            
+            <p class="username me-2">{{loggedUserInfo?.email}}</p> 
+        </div>
+    </div>
+   
+</mat-toolbar> -->
+
+<mat-toolbar  style="background-color: white;">
+    <mat-toolbar-row>
+      <span> <img src="../../../assets/images/mindOptimizersMain.png" class="mb-3" alt="" height="45"></span>
+      <span class="example-spacer"></span>
+      <div style="display: inline-block;">
+        <img src="../../../assets/images/feature-img-3.jpg" alt="" class="image" style="border-radius: 50%;">
+    </div>
+      <p class="mt-3 icon-clr">Janhavi</p>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <i class="ri-logout-circle-r-line icon-clr" style="font-size:20px;"></i>
+      </button>
+    </mat-toolbar-row>
+    
+    <mat-toolbar-row style="border-top: 1px solid #0000002e;">
+      
+    
+      <!-- <span class="example-spacer"></span> -->
+      <span class="btn navHover" [routerLink]="['/main-dashboard']" >
+        <i class="ri-dashboard-3-fill icon-clr"  style="font-size:20px;"></i> <span>Dashboard</span>
+      </span>
+      <span class="btn navHover" [routerLink]="['/profile']">
+        <i class="ri-map-pin-user-fill icon-clr" style="font-size:20px;"></i> Profile
+      </span>
+      <span class="btn navHover" [routerLink]="['/alerts']">
+        <i class="ri-alert-fill icon-clr" style="font-size:20px;"></i> Alerts
+      </span>
+      <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Team</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Projects</a>
+          </li>
+        </ul>
+      </div> -->
+      
+      
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+<!-- <mat-toolbar >
+    <div class="col-lg-2 col-md-3">
+       
+    </div>
+</mat-toolbar> -->

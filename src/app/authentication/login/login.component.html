@@ -1,0 +1,77 @@
+
+<div class="auth-fluid ">
+    <div class="auth-fluid-form-box">
+        <div class="align-items-center d-flex h-100">
+            <div class="card-body">
+                <div class="text-center">
+                    <img src="../../../assets/images/mindOptimizersMain.png" class="mb-3" alt="" height="45">
+                    <h3 style="color:black;">Tracking vehicles with extreme accuracy</h3>
+                    <p >Welcome, Please Login to your acoount</p>
+                </div>
+                <p class="cls_login text-muted mb-3">Enter your email Id and password to access admin panel.</p>
+                <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div >
+                        <div class="mb-2">
+                            <div class="input-group input-group-merge">
+                                <div class="input-group-text input-user">
+                                    <span class="ri-user-fill icon-clr"></span>
+                                </div>
+                                <input class="form-control p-2" type="text" id="emailaddress" required=""
+                                    placeholder="Enter your email" formControlName="username">
+                            </div>
+                            <span class="text-danger"
+                                *ngIf="(loginFormControl.username.touched || submitted) && loginFormControl.username.errors?.required">
+                                Email is required
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="loginFormControl.username.touched && loginFormControl.username.errors?.email">
+                                Enter a valid email address
+                            </span>
+                        </div>
+                        <div class="mb-2">
+                            <div class="input-group input-group-merge">
+                                <div class="input-group-text input-pass">
+                                    <span class="ri-lock-2-fill icon-clr"></span>
+                                </div>
+                                <input type="password" id="password" class="form-control p-2"
+                                    placeholder="Enter your password" formControlName="password">
+                                <!-- <div class="input-group-text pass-group" data-password="false">
+                                  <span class="ri-eye-line icon-clr"  style="cursor: pointer;" *ngIf="!show_password"
+                                  (click)="showpassword('password', this)"></span >
+                                  <span class="ri-eye-line icon-clr"  style="cursor: pointer;"*ngIf="show_password"
+                                  (click)="showpassword('password', this)"></span >
+                                    
+                                </div> -->
+                            </div>
+                            <span class="text-danger"
+                                *ngIf="(loginFormControl.password.touched || submitted) && loginFormControl.password.errors?.required">
+                                Password is required
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="loginFormControl.password.touched && loginFormControl.password.errors?.invalidPassword">
+                                Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
+                                letter and 1 number
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid text-center" style="display: grid;">
+                        <button class="btn base-button" type="submit" [disabled]="loginForm.invalid">Log In
+                        </button>
+
+                        
+                    </div>
+                   
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="ui-bg-overlay"></div>
+    <div class="auth-fluid-right bg-transparent">
+        <div class="auth-user-testimonial ">
+
+        </div> 
+    </div>
+</div>
+

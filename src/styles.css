@@ -1,0 +1,331 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html{
+  min-height:100%;/* make sure it is at least as tall as the viewport */
+  position:relative;
+}
+body{
+  height:100%; /* force the BODY element to match the height of the HTML element */
+}
+
+
+
+div.auth-background{
+    background-image: url('../src/assets/images/carImg.jpeg');
+    background-size: cover;
+    height: 100vh;
+    min-height: 100% !important;
+    background-repeat: no-repeat;
+}
+
+div.auth-card{
+    /* padding: 96px 0px 0px 0px; */
+    position: absolute;
+    top:10.2%;
+    right: 0;
+}
+div.auth-card div.card{
+    background-color: rgb(0,0,0,0.4);
+    color: white;
+    height: 89.8vh;
+  }
+div.card-body{
+  padding-left: 2rem;
+  padding-right: 2rem
+}
+
+.card-header ul.nav{
+    justify-content: center;
+    /* border-radius:60px ; */
+}
+.card-header ul.nav li.nav-item{
+    /* background-color: blue; */
+    padding:5px 15px 5px 15px ;
+    border-bottom:2px solid black ;
+}
+
+
+.card-header ul.nav li.nav-item.isActive{
+    /* background-color: blue; */
+    /* color:white; */
+    border-bottom:2px solid white ;
+}
+
+
+/* .card-header ul.nav li.nav-item a:active{
+    padding: 5px 80px 5px 80px;
+    border-bottom: 1.5px solid white ;
+
+} */
+
+/* for loader */
+.loader {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.spinner {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: conic-gradient(rgba(0, 0,0, 25%), black);
+  position: relative;
+  animation: spin 1.0s linear infinite;
+  transform: translateZ(0);
+}
+
+.spinner::after {
+  background:white;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  content: "";
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+  
+  .car__body {
+    animation: shake 0.2s ease-in-out infinite alternate;
+  }
+  .car__line {
+    transform-origin: center right;
+    stroke-dasharray: 22;
+    animation: line 0.8s ease-in-out infinite;
+    animation-fill-mode: both;
+  }
+  .car__line--top {
+    animation-delay: 0s;
+  }
+  .car__line--middle {
+    animation-delay: 0.2s;
+  }
+  .car__line--bottom {
+    animation-delay: 0.4s;
+  }
+  
+  @keyframes shake {
+    0% {
+      transform: translateY(-1%);
+    }
+    100% {
+      transform: translateY(3%);
+    }
+  }
+  @keyframes line {
+    0% {
+      stroke-dashoffset: 22;
+    }
+    25% {
+      stroke-dashoffset: 22;
+    }
+    50% {
+      stroke-dashoffset: 0;
+    }
+    51% {
+      stroke-dashoffset: 0;
+    }
+    80% {
+      stroke-dashoffset: -22;
+    }
+    100% {
+      stroke-dashoffset: -22;
+    }
+  }
+
+
+/* Mat Table  */
+table {
+  width: 100%;
+}
+
+
+
+/* For screen having minimum width 768px  registration */
+
+/* @media only screen and (min-width:320px) and (max-width: 479px) {
+  div.auth-background{
+    height: 160vh !important;
+  }
+} */
+
+
+@media only screen and (max-width: 480px) {
+  div.card-body{
+    padding: 2rem 0.5rem 0 0.5rem;
+  }
+
+
+  div.auth-background{
+    height: 174vh;
+  }
+
+  div.auth-card{
+    top:5.6%;
+    width: 100% !important;
+  }
+
+
+  div.auth-card div.card{
+    height: 164.5vh;
+
+  } 
+
+  #policy label, #is_subscribed_to_updates label{
+    font-size:0.8rem ;
+  }
+}
+
+/* @media only screen and (min-width: 480px) and (max-width:991px){
+  div.auth-card{
+    top:9.5%;
+  } 
+} */
+
+@media only screen and (min-width: 481px) and (max-width:991px) {
+  div.auth-card{
+    width:100%;
+    top:9.5%;
+
+  }
+
+  div.card-body{
+    padding: 2rem 0.5rem 0 0.5rem;
+  }
+
+  
+
+  /* div.auth-card div.card{
+    height:90.2vh;
+  } */
+}
+
+@media only screen and (min-width: 480px) and (max-width:768px) and (orientation: landscape){
+  div.auth-card{
+    width:100%;
+    top:12%;
+
+  }
+
+  div.card-body{
+    padding: 2rem 0.5rem 0 0.5rem;
+  }
+
+
+  div.auth-background{
+    height: 190vh;
+  }
+
+  div.auth-card div.card{
+    height: 175vh;
+
+  }
+}
+
+
+@media only screen and (min-width: 768px) and (max-width:1024px) {
+  div.auth-card{
+    top:9.3%;
+  }
+  
+  div.auth-card div.card{
+    height: 90.5vh;
+  }
+  div.auth-card div.card-body{
+    padding:96px 0px 16px;
+  }
+  
+}
+ 
+@media only screen and (min-width: 1025px) and (max-width:1199px) {
+  div.auth-card{
+    top:10.8%;
+  }
+  
+  div.auth-card div.card{
+    height: 89vh;
+  }
+ 
+}
+
+@media only screen and (min-width: 1200px) and (max-width:1399px) {
+  div.auth-card{
+    top:10.8%;
+  }
+  
+  div.auth-card div.card{
+    height: 89vh;
+  }
+ 
+}
+
+/* @media only screen and (min-width: 768px) and (max-width:1024px) and (orientation: landscape) {
+  div.auth-card{
+    width:50%;
+    top:0%;
+
+  }
+
+  div.card-body{
+    padding: 2rem 0.5rem 0 0.5rem;
+  }
+
+
+
+}
+ */
+
+ .base-button{
+  background: transparent linear-gradient(90deg, #7D46D9 0%, #4D21CC 100%) 0% 0% no-repeat padding-box;
+  color:white !important;
+ }
+
+.icon-clr{
+  color: #ae7ed7;
+} 
+
+.base-bgclr{
+  background-color: #b384d536;
+  height: 100%;
+}
+
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.example-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
