@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.subscribeUpdatedData();
   }
-  title = 'intrinsicpower-frontend';
+  title = 'Mind-Optimizers';
 
   subscribeUpdatedData(){
     var that = this;

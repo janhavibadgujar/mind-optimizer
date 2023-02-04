@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+  production: true,
+  environmentName: 'DEV',
   baseUrl: 'http://mindoptimizerbackend.thinkathon.co.in',
   pusherKey:'4fc51f255f4be21a067d'
 };
