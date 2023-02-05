@@ -55,6 +55,7 @@ export class MainDashboardComponent implements OnInit {
 
   }
   getAllAssets() {
+    this.SpinnerService.show();
     this.profile.getAllAssets().subscribe((response)=>{
       console.log('All assetsss',response);
       // this.userInfo = response.data
