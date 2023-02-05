@@ -114,7 +114,6 @@ export class ProfileComponent implements OnInit {
         this.userInfo = response.data
 
         this.SpinnerService.hide();
-        return this.userInfo
     },
     (catchError)=>{
         // this.main.logoutUser()

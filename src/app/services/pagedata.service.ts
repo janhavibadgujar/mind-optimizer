@@ -7,12 +7,16 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class PagedataService {
     title = ''
   private pageInfo: any = 'Dashboard';
+  private assetData: any ;
   private getOrgInfo: any;
   private getOrgID: any;
     constructor() {
     }
     private TitleSource = new BehaviorSubject(this.title);
     currentValue = this.TitleSource.asObservable();
+
+    private assetDataValue = new BehaviorSubject('');
+    assetCurrentVal = this.assetDataValue.asObservable();
 
     private deviceUpdate = new BehaviorSubject('');
     sharedMessage = this.deviceUpdate.asObservable();
@@ -51,6 +55,10 @@ export class PagedataService {
     changeTitle(titleName:string) {
       this.pageInfo = titleName;
         this.TitleSource.next(titleName);
+    }
+    changeAssetData(titleName:string) {
+      this.pageInfo = titleName;
+        this.assetDataValue.next(titleName);
     }
     setOrgDetails(org:string) {
       this.getOrgInfo = org;
