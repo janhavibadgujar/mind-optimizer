@@ -3,6 +3,9 @@
     <div class="row mb-0">
       
         <div class="col-md-4">
+            <div *ngIf="data.length == 0">
+                <h1>No Assets Available</h1>
+            </div>
             <div class=" mb-2" *ngFor="let item of data">
                 <div class="card assetCard" (click)="showAssetDetails(item)">
                     <div class="card-body">

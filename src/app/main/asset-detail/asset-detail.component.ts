@@ -10,13 +10,14 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
   styleUrls: ['./asset-detail.component.css']
 })
 export class AssetDetailComponent implements OnInit {
-  // mapElement:any;
+  mapElement:any;
   userInfo: any;
   formatAddress:string = "";
   assetInfo: any;
   setLat: any;
   setLong: any;
-  mapElement: HTMLElement = document.getElementById('map') as HTMLElement;
+  pusherData: any;
+  // mapElement: HTMLElement = document.getElementById('map') as HTMLElement;
   constructor(
     private profile: ProfileService, 
     private SpinnerService: NgxSpinnerService,
@@ -35,34 +36,25 @@ export class AssetDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserInfo();
+    
     this.pageService.sharedMessage.subscribe((res: any) => {
       console.log('PUSHER-DATA',res);
+      this.pusherData = res
       this.setLat = res.latitude;
       this.setLong = res.longitude;
-      let map: any;
-
-    map = new google.maps.Map(this.mapElement, {
-      zoom: 3,
-      center: new google.maps.LatLng(this.setLat, this.setLong),
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-    });
-    var infowindow = new google.maps.InfoWindow();
-    var marker, i;
-
-    // for (i = 0; i < LocationsForMap.length; i++) {
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(
-         
-         this.setLat,
-         this.setLong
-        ),
-        // icon: this.iconBase + "parking_lot_maps.png",
-        // label: "Test label",
-        map: map,
-      });
-    // }
-      // this.formatAddress = '<iframe src="https://maps.google.com/maps?hl=en&output=embed&amp;q='+this.setLat+ ','+this.setLong+'&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="100%" height="490" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>'
-      // this.mapElement = this.sanitizer.bypassSecurityTrustHtml(this.formatAddress);
+      console.log('this.assetInfo',this.assetInfo,this.pusherData)
+        this.formatAddress = '<iframe src="https://maps.google.com/maps?hl=en&output=embed&amp;q='+this.setLat+ ','+this.setLong+'&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="100%" height="490" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>'
+    this.mapElement = this.sanitizer.bypassSecurityTrustHtml(this.formatAddress);
+  //  if(this.assetInfo.id == this.pusherData.asset_id) {
+  //   console.log('inside if')
+  //   this.formatAddress = '<iframe src="https://maps.google.com/maps?hl=en&output=embed&amp;q='+this.setLat+ ','+this.setLong+'&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="100%" height="490" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>'
+  //   this.mapElement = this.sanitizer.bypassSecurityTrustHtml(this.formatAddress);
+  // }else {
+  //   console.log('inside else')
+  //   this.formatAddress = '<iframe src="https://maps.google.com/maps?hl=en&output=embed&amp;q='+this.assetInfo.lat+ ','+this.assetInfo.long+'&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="100%" height="490" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>'
+  //     this.mapElement = this.sanitizer.bypassSecurityTrustHtml(this.formatAddress);
+  // }
+      
     })
   }
   getUserInfo() {
@@ -72,33 +64,12 @@ export class AssetDetailComponent implements OnInit {
           // this.userInfo = response.data
           this.userInfo = response
           // this.formatAddress = this.singleEvseData.charger_address.replace(' ','%20');
-          // this.formatAddress = '<iframe src="https://maps.google.com/maps?hl=en&output=embed&amp;q='+this.setLat+ ','+this.setLong+'&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="100%" height="490" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>'
-          // this.mapElement = this.sanitizer.bypassSecurityTrustHtml(this.formatAddress);
-          let map: any;
+          this.formatAddress = '<iframe src="https://maps.google.com/maps?hl=en&output=embed&amp;q='+this.setLat+ ','+this.setLong+'&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="100%" height="490" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>'
+          this.mapElement = this.sanitizer.bypassSecurityTrustHtml(this.formatAddress);
+         
 
-          map = new google.maps.Map(this.mapElement, {
-            zoom: 3,
-            center: new google.maps.LatLng(this.assetInfo.lat, this.assetInfo.long),
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-          });
-          var infowindow = new google.maps.InfoWindow();
-          var marker, i;
-      
-          // for (i = 0; i < LocationsForMap.length; i++) {
-            marker = new google.maps.Marker({
-              position: new google.maps.LatLng(
-               
-               this.assetInfo.lat,
-               this.assetInfo.long
-              ),
-              // icon: this.iconBase + "parking_lot_maps.png",
-              // label: "Test label",
-              map: map,
-            });
+          
           this.SpinnerService.hide();
-          return this.mapElement;
-          this.SpinnerService.hide();
-          return this.userInfo
       },
       (catchError)=>{
           // this.main.logoutUser()

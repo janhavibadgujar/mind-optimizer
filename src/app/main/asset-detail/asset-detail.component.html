@@ -8,18 +8,30 @@
     <div class="row">
 <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-12 col-sm-12 pt-2 px-3">
 
-    <div class="card assetCard" >
+    <div class="card assetCard mb-2" >
         <div class="card-body">
             
             <div style="display: inline-block;">
-                <img src="userInfo.user_photo" alt="" class="image" style="border-radius: 50%;">
+                <img src="userInfo?.user_photo" alt="" class="image" style="border-radius: 50%;">
             </div>
-            <span style="font-weight: bold; margin-left:10px;">Asset Name</span>
+            <span style="font-weight: bold; margin-left:10px;">{{userInfo?.email}}</span>
           
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-text ml-5">Phone : {{userInfo?.mobile_number}}</p>
          
         </div>
       </div>
+      <!-- <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>Asset Id : {{pusherData?.asset_id}}</mat-card-title>
+            <mat-card-subtitle>Medium</mat-card-subtitle>
+            <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"  alt="Image of a Shiba Inu">
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+          <p>dvndfvbdfkjbvdfjkvbdkjf</p>
+        </mat-card-content>
+      </mat-card> -->
 
 </div>
 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 pt-2 px-3">
@@ -27,9 +39,10 @@
     <mat-card
     class="mat-elevation-z8 "> <!-- <mat-card-title class="h6 d-flex"><mat-icon >info</mat-icon><span class="mt-1 mx-2">User Info</span></mat-card-title> -->
     <mat-card-content mat-card-image class="px-3 pt-4">
-        <div id="map" style=" height: 100%;" mat-card-image="mat-card-image"></div>
+        <div [innerHTML]="mapElement"></div>
     </mat-card-content>
 </mat-card>
+
 </div>
 </div>
 </div>

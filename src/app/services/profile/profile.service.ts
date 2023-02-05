@@ -44,6 +44,7 @@ export class ProfileService {
   }
 
   createRule(data:any):Observable<any>{
-    return this.http.post(`${this.BaseUrl}/rule`,data)
+    var header = new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem('token'));
+    return this.http.post(`${this.BaseUrl}/rule/`,data,{headers:header})
   }
 }

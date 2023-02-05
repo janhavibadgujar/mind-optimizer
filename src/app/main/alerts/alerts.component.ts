@@ -9,7 +9,7 @@ import { elementAt } from 'rxjs';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 
 export interface AlertDetails {
-  id:string;
+  // id:string;
   name:string;
   condition:string;
   message:string;
@@ -22,7 +22,7 @@ export interface AlertDetails {
   styleUrls: ['./alerts.component.css']
 })
 export class AlertsComponent implements OnInit {
-  displayedColumns: string[] = ["id","name", "condition","message","time"];
+  displayedColumns: string[] = ["name", "condition","message","time"];
   dataSource!: MatTableDataSource<AlertDetails>;
   @ViewChild('paginator', { static: true }) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
@@ -80,7 +80,7 @@ conditions=[
         console.log("OBJECT---",data)
 
         this.profileService.createRule(data).subscribe((res:any)=>{
-          this.toastr.show('Rule Created!!');
+          this.toastr.success('Rule Created!!');
           this.alertForm.reset();
           this.getAlerts();
         },(err:any)=>{

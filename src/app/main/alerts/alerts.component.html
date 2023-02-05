@@ -7,17 +7,17 @@
 </ngx-spinner>
 <div class="row">
  <button type="button" class="btn base-button" style="float:right; margin-left:84%; width:15%;"
- data-toggle="modal" data-target="#exampleModal">Add Alert</button>
+ data-toggle="modal" data-target="#exampleModal">Create Alert</button>
 </div>
 <div class="mat-elevation-z8 mt-3">
 
     <table #table mat-table [dataSource]="dataSource" matSort class="mattable">
   
       <!-- ID Column -->
-      <ng-container matColumnDef="id">
+      <!-- <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: black; font-size:16px;"> ID </th>
         <td *matCellDef="let row">{{row.id}}</td>
-      </ng-container>
+      </ng-container> -->
   
       <!-- Progress Column -->
       <ng-container matColumnDef="message">
@@ -58,7 +58,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" >
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title" id="exampleModalLabel" style="color: black; color:#8f5abd;">Add Alert</h2>
+          <h2 class="modal-title" id="exampleModalLabel" style="color: black; color:#8f5abd;">Create Alert</h2>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -68,7 +68,7 @@
             <div class="row form-group" >
               <label  class="form-label" style="color:black; font-size:15px;">Title</label>
               <div class="col-12" >
-                <input type="text" class="form-control" formControlName="name" >
+                <input type="text" class="form-control" formControlName="name" placeholder="Title">
                 <span class="text-danger"
                 *ngIf="alertconfigFormControl.name.touched && alertconfigFormControl.name.errors?.required">
                 Title is required
@@ -87,7 +87,7 @@
               </div>
               <div class="col-6" >
                 <label class="form-label" style="color:black;font-size:15px;">Value</label>
-                <input type="number" class="form-control" formControlName="value" min="0" max="100">
+                <input type="number" class="form-control" formControlName="value" min="0" max="100" placeholder="0">
               </div>
             </div>
 
@@ -110,7 +110,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" [disabled]="alertForm.invalid" (click)="onSubmit()">Create Rule</button>
+          <button type="button" class="btn base-button" [disabled]="alertForm.invalid" (click)="onSubmit()">Create Rule</button>
           <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
         </div>
       </div>

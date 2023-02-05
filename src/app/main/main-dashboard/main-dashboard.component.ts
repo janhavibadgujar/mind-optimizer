@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router, RoutesRecognized } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Subscription } from 'rxjs';
 import { PagedataService } from 'src/app/services/pagedata.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { environment } from '../../../environments/environment';
@@ -10,11 +11,14 @@ import { environment } from '../../../environments/environment';
   templateUrl: './main-dashboard.component.html',
   styleUrls: ['./main-dashboard.component.css']
 })
-export class MainDashboardComponent implements OnInit {
+export class MainDashboardComponent implements OnInit,OnDestroy {
+  subscription!:Subscription;
+
   // @Input() vehicleImg:string = "src/assets/images/carImg.jpeg";
   BaseUrl: string = environment.baseUrl;
   Locations: any=[];
   evseList: any=[];
+  
   iconBase =
     "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
   data:any=[];
@@ -29,6 +33,9 @@ export class MainDashboardComponent implements OnInit {
     private SpinnerService: NgxSpinnerService,
     private pagedataService : PagedataService,
   ) { }
+  ngOnDestroy(): void {
+    // this.subscription.unsubscribe();
+  }
 
   ngOnInit(): void {   
     this.getAllAssets(); 
@@ -41,7 +48,7 @@ export class MainDashboardComponent implements OnInit {
     // this.generateLocationList();
     this.pageService.changeTitle('Dashboard');
 
-    this.pageService.sharedMessage.subscribe((res: any) => {
+    this.subscription=this.pageService.sharedMessage.subscribe((res: any) => {
       console.log('PUSHER-DATA in main',res);
       console.log('PUSHER-DATA in data',this.data);
       this.data[0].lat=res.latitude
@@ -115,9 +122,9 @@ showAssetDetails(item : any) {
     //   mapTypeId: google.maps.MapTypeId.ROADMAP,
     // });
     console.log("LocationsForMap",LocationsForMap)
-    for (i = 0; i < LocationsForMap.length; i++) { 
-      this.marker.setMap(null)
-    }
+    // for (i = 0; i < LocationsForMap.length; i++) { 
+    //   this.marker.setMap(null)
+    // }
     for (i = 0; i < LocationsForMap.length; i++) {
      
      this.marker = new google.maps.Marker({
