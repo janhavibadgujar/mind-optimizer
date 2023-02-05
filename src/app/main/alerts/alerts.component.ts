@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { elementAt } from 'rxjs';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 
@@ -32,10 +33,12 @@ export class AlertsComponent implements OnInit {
   
   constructor(
     private fb:FormBuilder,
-    private profileService:ProfileService
+    private profileService:ProfileService,
+    private SpinnerService: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
+    this.SpinnerService.show();
     this.alertForm=this.fb.group({
       name:['',Validators.required],
       value:['',Validators.required],
@@ -72,14 +75,14 @@ conditions=[
 
   getAlerts()
   {
+    this.SpinnerService.show();
     this.profileService.getAllAlerts().subscribe((res:any)=>{
       console.log("Alert---",res)
-      res.forEach((element:any)=>{
-        console.log("id---",element)
-      })
+    
       this.dataSource = new MatTableDataSource<AlertDetails>(res);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.SpinnerService.hide();
     })
   }
 
