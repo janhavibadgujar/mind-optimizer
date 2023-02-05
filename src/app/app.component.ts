@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     var channel = that.pusherService.subscribe(channelName);
     console.log("channelName",channelName)
     console.log("channel",channel);
-    channel.bind(`20d8acf8-9301-4a90-8348-88b5a76f043e`, function (data:any) {
+    channel.bind(`${localStorage.getItem('userId')}`, function (data:any) {
       console.log('outside if data');
       that.gettingDeviceData(data);
     })

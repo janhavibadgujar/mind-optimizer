@@ -42,4 +42,8 @@ export class ProfileService {
     console.log("profile image service",image)
     return this.http.put(`${this.BaseUrl}/upload_image`,image)
   }
+
+  createRule(data:any):Observable<any>{
+    return this.http.post(`${this.BaseUrl}/rule`,data)
+  }
 }

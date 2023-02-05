@@ -45,7 +45,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                           <tr class="mat-row" *matNoDataRow>
-                              <td class="mat-cell" colspan="6">No Transaction Avaliable</td>
+                              <td class="mat-cell" colspan="6">No Alerts Avaliable</td>
                           </tr>
     </table>
   
@@ -64,7 +64,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form [formGroup]="alertForm" (ngSubmit)="onSubmit()">
+          <form [formGroup]="alertForm" >
             <div class="row form-group" >
               <label  class="form-label" style="color:black; font-size:15px;">Title</label>
               <div class="col-12" >
@@ -87,19 +87,19 @@
               </div>
               <div class="col-6" >
                 <label class="form-label" style="color:black;font-size:15px;">Value</label>
-                <input type="text" class="form-control" formControlName="value">
+                <input type="number" class="form-control" formControlName="value" min="0" max="100">
               </div>
             </div>
 
             <div *ngIf="condition_type !=''" class="row form-group" >
-              <h4 style="font-weight:bold; color:#8f5abd;">Assets</h4>
+              <h3 style="font-weight:bold; color:#8f5abd;">Assets</h3>
               <div class="col-12" >
-                <div *ngFor="let vechile of vechiles; let index = index" class="form-check" style="margin-left:20px;">
-                  
-                    <mat-radio-button  [value]="vechile.id" (change)="selectAssets($event,index)">
-
-                    </mat-radio-button>
-                    <!-- <input type="radio" ([ngModel])="selectedIndex === index" [value]="vechile.id" (change)="selectAssets($event,index)" />&nbsp; -->
+                <div *ngFor="let vechile of vechiles" class="form-check" style="margin-left:20px;">
+                  <span>
+                     <input id="asset" name="asset" type="radio"  [value]="vechile.id" (change)="selectAssets($event)" />&nbsp;
+                  </span>
+                   
+                   
                     <span>{{vechile?.vehicle_number}}</span>
             
                  
@@ -110,7 +110,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" [disabled]="alertForm.invalid">Create Rule</button>
+          <button type="button" class="btn btn-primary" [disabled]="alertForm.invalid" (click)="onSubmit()">Create Rule</button>
           <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
         </div>
       </div>

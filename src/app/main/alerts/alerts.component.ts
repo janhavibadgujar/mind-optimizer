@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { elementAt } from 'rxjs';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 
@@ -26,7 +27,7 @@ export class AlertsComponent implements OnInit {
   @ViewChild('paginator', { static: true }) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   alertForm!:FormGroup;
-  assetList: any=[];
+  assetList: any;
   vechiles:any=[];
   condition_type: string='';
   selectedIndex!: number;
@@ -34,7 +35,8 @@ export class AlertsComponent implements OnInit {
   constructor(
     private fb:FormBuilder,
     private profileService:ProfileService,
-    private SpinnerService: NgxSpinnerService
+    private SpinnerService: NgxSpinnerService,
+    private toastr:ToastrService, 
   ) { }
 
   ngOnInit(): void {
@@ -43,7 +45,6 @@ export class AlertsComponent implements OnInit {
       name:['',Validators.required],
       value:['',Validators.required],
       condition:['',Validators.required],
-      asset:['']
     });
     this.getAlerts();
     this.getAllAssets()
@@ -56,9 +57,37 @@ conditions=[
 ]
   onSubmit()
   {
-      const data={
-
+    if(this.alertForm?.valid)
+    {
+      if(this.condition_type='Temperature Greater Than')
+      {
+        var x='temperature'
       }
+      else if(this.condition_type='Speed Greater Than')
+      {
+        var x='speed'
+      }
+      else
+      {
+        var x='fuel'
+      }
+        const data={
+          condition:x,
+          asset:this.assetList,
+          value:this.alertForm.value.value,
+          alert_type:this.alertForm.value.name
+        }
+        console.log("OBJECT---",data)
+
+        this.profileService.createRule(data).subscribe((res:any)=>{
+          this.toastr.show('Rule Created!!');
+          this.alertForm.reset();
+          this.getAlerts();
+        },(err:any)=>{
+          this.toastr.error('Rule not created!');
+        })
+    }
+
   }
 
   get alertconfigFormControl() {
@@ -86,17 +115,18 @@ conditions=[
     })
   }
 
-  selectAssets(event:any,index:any)
+  selectAssets(event:any)
   {
-    this.selectedIndex = event.target.checked ? index : undefined;
+    //this.selectedIndex = event.target.checked ? index : undefined;
     
     if(event.target.checked==true)
     {
-      this.assetList.push(event.target.value)
+      this.assetList=event.target.value;
     }
     if(event.target.checked==false)
     {
-      this.assetList=this.assetList.filter((item: any) => item !==event.target.value )
+      this.assetList='';
+      //this.assetList=this.assetList.filter((item: any) => item !==event.target.value )
     }
   }
 
