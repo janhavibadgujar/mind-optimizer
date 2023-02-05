@@ -6,7 +6,7 @@
     /* width: 100%; */
     flex-direction: row;
     align-items: stretch;
-    background: transparent url('../../../assets/images/login.jpg') 0% 0% no-repeat padding-box;
+    background: transparent url('../../../assets/images/login2.jpg') 0% 0% no-repeat padding-box;
     /* background: url('../../../assets/images/login.jpg') 0% 0% no-repeat padding-box ; */
     opacity: 1;
 
@@ -36,7 +36,7 @@
     position: relative;
     color: #fff;
     background-color: transparent;
-    background: url(../../../assets/images/login.jpg)  ;
+    background: url(../../../assets/images/login2.jpg)  ;
     background-repeat: no-repeat;
     background-size: cover;
     

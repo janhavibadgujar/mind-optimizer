@@ -2,54 +2,56 @@
  <button type="button" class="btn base-button" style="float:right; margin-left:84%; width:15%;"
  data-toggle="modal" data-target="#exampleModal">Add Alert</button>
 </div>
-<div class="example-container mat-elevation-z8 mt-4">
+<div class="mat-elevation-z8 mt-3">
 
-    <mat-table [dataSource]="dataSource" matSort>
+    <table #table mat-table [dataSource]="dataSource" matSort class="mattable">
   
       <!-- ID Column -->
       <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header style="color: black; font-size:15px;"> ID </mat-header-cell>
-        <mat-cell *matCellDef="let row">  </mat-cell>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: black; font-size:16px;"> ID </th>
+        <td *matCellDef="let row">{{row.id}}</td>
       </ng-container>
   
       <!-- Progress Column -->
       <ng-container matColumnDef="message">
-        <mat-header-cell *matHeaderCellDef mat-sort-header style="color: black; font-size:15px;"> Message </mat-header-cell>
-        <mat-cell *matCellDef="let row">  </mat-cell>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: black; font-size:16px;"> Message </th>
+        <td mat-cell *matCellDef="let row">{{row?.message}}</td>
       </ng-container>
   
       <!-- Name Column -->
       <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header style="color: black; font-size:15px;"> Name </mat-header-cell>
-        <mat-cell *matCellDef="let row"> </mat-cell>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: black; font-size:16px;"> Name </th>
+        <td mat-cell *matCellDef="let row">{{row?.alert_type}}</td>
       </ng-container>
   
       <!-- Color Column -->
       <ng-container matColumnDef="time">
-        <mat-header-cell *matHeaderCellDef mat-sort-header style="color: black; font-size:15px;"> Time </mat-header-cell>
-        <mat-cell *matCellDef="let row" >  </mat-cell>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: black; font-size:16px;"> Time </th>
+        <td mat-cell *matCellDef="let row" >  </td>
       </ng-container>
 
       <ng-container matColumnDef="condition">
-        <mat-header-cell *matHeaderCellDef mat-sort-header style="color: black; font-size:15px;"> Condition </mat-header-cell>
-        <mat-cell *matCellDef="let row">  </mat-cell>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: black; font-size:16px;"> Condition </th>
+        <td mat-cell *matCellDef="let row">{{row?.alert_condition}}</td>
       </ng-container>
   
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;">
-      </mat-row>
-    </mat-table>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                          <tr class="mat-row" *matNoDataRow>
+                              <td class="mat-cell" colspan="6">No Transaction Avaliable</td>
+                          </tr>
+    </table>
   
-    <mat-paginator [pageSize]="10"></mat-paginator>
+    <mat-paginator #paginator [pageSize]="10" [showFirstLastButtons]="true"></mat-paginator>
   </div>
 
 
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" >
+  <div class="modal fade" id="exampleModal"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" >
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title" id="exampleModalLabel" style="color: black;">Add Alert</h2>
+          <h2 class="modal-title" id="exampleModalLabel" style="color: black; color:#8f5abd;">Add Alert</h2>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -57,21 +59,52 @@
         <div class="modal-body">
           <form [formGroup]="alertForm" (ngSubmit)="onSubmit()">
             <div class="row form-group" >
-              <div class="col-6" >
-                <label  class="form-label text-primary" style="font-weight:bold;">Title</label>
-                <span class="text-danger">*</span>
-                <input type="text" class="form-control" formControlName="name" style="width: 60%;">
+              <label  class="form-label" style="color:black; font-size:15px;">Title</label>
+              <div class="col-12" >
+                <input type="text" class="form-control" formControlName="name" >
                 <span class="text-danger"
                 *ngIf="alertconfigFormControl.name.touched && alertconfigFormControl.name.errors?.required">
                 Title is required
             </span>
+              </div>
             </div>
+
+            <div class="row form-group" >
+              <div class="col-6" >
+                <label class="form-label" style="color:black;font-size:15px;">Conditions</label>
+                <select class="form-select" formControlName="condition" (change)="selectCondition($event)">
+                  <option [disabled]="true">Select Condition</option>
+                  <option *ngFor="let device of conditions" [value]="device">
+                      {{device}}</option>
+                </select>
+              </div>
+              <div class="col-6" >
+                <label class="form-label" style="color:black;font-size:15px;">Value</label>
+                <input type="text" class="form-control" formControlName="value">
+              </div>
             </div>
+
+            <div *ngIf="condition_type !=''" class="row form-group" >
+              <h4 style="font-weight:bold; color:#8f5abd;">Assets</h4>
+              <div class="col-12" >
+                <div *ngFor="let vechile of vechiles; let index = index" class="form-check" style="margin-left:20px;">
+                  
+                    <mat-radio-button  [value]="vechile.id" (change)="selectAssets($event,index)">
+
+                    </mat-radio-button>
+                    <!-- <input type="radio" ([ngModel])="selectedIndex === index" [value]="vechile.id" (change)="selectAssets($event,index)" />&nbsp; -->
+                    <span>{{vechile?.vehicle_number}}</span>
+            
+                 
+                </div>
+              </div>
+            </div>
+           
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary" [disabled]="alertForm.invalid">Create Rule</button>
+          <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

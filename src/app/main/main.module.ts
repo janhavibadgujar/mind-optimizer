@@ -35,7 +35,7 @@ import { AssetDetailComponent } from './asset-detail/asset-detail.component';
     MatPaginatorModule,
     MatTableModule,
     MaterialAllModule,  
-    NgApexchartsModule
+    NgApexchartsModule,
   ]
 })
 export class MainModule { }

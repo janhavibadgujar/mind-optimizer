@@ -308,24 +308,40 @@ table {
   height: 100%;
 }
 
-
-.example-container {
-  display: flex;
-  flex-direction: column;
-  min-width: 300px;
+.mat-header-cell {
+  overflow: hidden;
+  /* background-color: #f0f5f9; */
+  font-weight: 400;
+  border-bottom: 1px solid #dce1e5;
+  color: #596680;
 }
-
-.example-header {
-  min-height: 64px;
-  padding: 8px 24px 0;
-}
-
-.mat-form-field {
-  font-size: 14px;
+.mattable{
   width: 100%;
 }
 
-.mat-table {
-  overflow: auto;
-  max-height: 500px;
+mat-row, mat-header-row, mat-footer-row, th.mat-header-cell, td.mat-cell, td.mat-footer-cell{
+  border-bottom-color: rgba(0, 0, 0, 0.12);
+}
+
+::ng-deep.mat-paginator-navigation-next:hover,
+::ng-deep.mat-paginator-navigation-last:hover,
+::ng-deep.mat-paginator-navigation-first:hover,
+::ng-deep.mat-paginator-navigation-previous:hover{
+    background-color: gray;
+    color:#fff;
+    font-weight: 600;
+    border-radius: 50%;
+    padding: 0;
+    min-width: 0;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    line-height: 40px;
+}
+::ng-deep .mat-paginator-navigation-next[disabled]:hover,
+::ng-deep .mat-paginator-navigation-last[disabled]:hover,
+::ng-deep .mat-paginator-navigation-first[disabled]:hover,
+::ng-deep .mat-paginator-navigation-previous[disabled]:hover{
+    background-color: #EFEFEF;
+    color:#000;
 }
