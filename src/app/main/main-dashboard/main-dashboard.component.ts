@@ -31,10 +31,22 @@ export class MainDashboardComponent implements OnInit,OnDestroy {
     private router: Router,
     private profile : ProfileService,
     private SpinnerService: NgxSpinnerService,
-    private pagedataService : PagedataService,
-  ) { }
+    // private pagedataService : PagedataService,
+  ) { 
+    this.pageService.sharedMessage.subscribe((res: any) => {
+      console.log('PUSHER-DATA in main',res);
+      console.log('PUSHER-DATA in data',this.data);
+      // this.data[0].lat=res.latitude
+      // this.data[0].log=res.longitude
+      this.generateLocationList()
+      // this.setLat = res.latitude;
+      // this.setLong = res.longitude;
+      // let map: any;
+
+    })
+  }
   ngOnDestroy(): void {
-    // this.subscription.unsubscribe();
+     this.subscription.unsubscribe();
   }
 
   ngOnInit(): void {   
@@ -48,7 +60,7 @@ export class MainDashboardComponent implements OnInit,OnDestroy {
     // this.generateLocationList();
     this.pageService.changeTitle('Dashboard');
 
-    this.subscription=this.pageService.sharedMessage.subscribe((res: any) => {
+    this.pageService.sharedMessage.subscribe((res: any) => {
       console.log('PUSHER-DATA in main',res);
       console.log('PUSHER-DATA in data',this.data);
       this.data[0].lat=res.latitude
