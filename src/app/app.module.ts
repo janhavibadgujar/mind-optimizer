@@ -5,13 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './authentication/login/login.component';
-import { RegistrationComponent } from './authentication/registration/registration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-// import { HeaderComponent } from './shared/header/header.component';
-import { ForgotPasswordComponent } from './authentication/forgot-password/forgot-password.component';
 import { TokenInterceptorService } from './services/authentication/token-interceptor.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SpinnerComponent } from './shared/spinners/spinner/spinner.component';
@@ -23,8 +20,6 @@ import { MainModule } from './main/main.module';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    RegistrationComponent,
-    ForgotPasswordComponent,
     SpinnerComponent,
   ],
   imports: [
