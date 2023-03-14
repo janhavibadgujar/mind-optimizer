@@ -1,48 +1,116 @@
-<div>
-    <button  class="float-end base-button p-3" style="border-radius: 50%;"  data-bs-toggle="modal" data-bs-target="#addChargingStationModal" id="#addChargingStationModal"> +
-    </button>
-</div>
 <div class="container-fluid ">
-    
-
+  <span style="font: normal normal bold 20px Open Sans;">Assets</span>
     <div class="row">
-<div class="col-xxl-8 col-xl-8 col-lg-8 col-md-12 col-sm-12 pt-2 px-3">
-
-    <div class="card assetCard mb-2" >
-        <div class="card-body">
-            
-            <div style="display: inline-block;">
-                <img src="userInfo?.user_photo" alt="" class="image" style="border-radius: 50%;">
-            </div>
-            <span style="font-weight: bold; margin-left:10px;">{{userInfo?.email}}</span>
+<div class="col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 pt-2 px-3 scrollable">
+  <div *ngFor="let item of carDetails">
+    <div class="card assetCard mb-2">
+      <div class="card-body" [ngStyle]="{'background-color': asset_id == item?.asset_id ? ('rgb(138 43 226 / 59%)') :('white') }">
           
-          <p class="card-text ml-5">Phone : {{userInfo?.mobile_number}}</p>
-         
-        </div>
+        <div style="display: inline-block;">
+          <img src="../../../assets/images/Group 63785.png" alt="" class="image" style="border-radius: 50%;">
+          <!-- <img *ngIf="item.user_photo == null" src="../../../assets/images/feature-img-3.jpg" alt="" class="image" style="border-radius: 50%;">
+          <img *ngIf="item.user_photo != null" src="{{BaseUrl}}{{item.user_photo}}" alt="" class="image" style="border-radius: 50%;"> -->
       </div>
-      <!-- <mat-card class="example-card">
-        <mat-card-header>
-          <mat-card-title-group>
-            <mat-card-title>Asset Id : {{pusherData?.asset_id}}</mat-card-title>
-            <mat-card-subtitle>Medium</mat-card-subtitle>
-            <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"  alt="Image of a Shiba Inu">
-          </mat-card-title-group>
-        </mat-card-header>
-        <mat-card-content>
-          <p>dvndfvbdfkjbvdfjkvbdkjf</p>
-        </mat-card-content>
-      </mat-card> -->
+      <span style="font-weight: bold; margin-left:10px;">{{item?.vechile}}</span>
+    
+    <p class="card-text" style="margin-left: 60px;">{{item?.name}} | {{item?.number}}</p>
+       
+      </div>
+    </div>
+  </div>
+    
+     
 
 </div>
 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 pt-2 px-3">
            
-    <mat-card
-    class="mat-elevation-z8 "> <!-- <mat-card-title class="h6 d-flex"><mat-icon >info</mat-icon><span class="mt-1 mx-2">User Info</span></mat-card-title> -->
-    <mat-card-content mat-card-image class="px-3 pt-4">
-        <div [innerHTML]="mapElement"></div>
-    </mat-card-content>
+  <mat-card class="mat-elevation-z8  h-100">
+  <mat-card-content mat-card-image class="px-3 pt-4">
+      <div [innerHTML]="mapElement"></div>
+      <!-- <div *ngFor="let item of carDetails">
+        <div *ngIf="asset_id == item.asset_id" style="display:inline-block;">
+         <span style="font-weight:bold;font: normal normal bold 20px Open Sans;">{{item?.vechile}}</span>
+         <span><img src="../../../assets/images/Group 63785.png" alt="" class="image" style="border-radius: 50%;margin-left:20%;"></span>
+        </div>
+      </div> -->
+  </mat-card-content>
 </mat-card>
 
 </div>
+<div class="col-xxl-5 col-xl-5 col-lg-5 col-md-12 col-sm-12 pt-2 px-3">
+  <div class="card assetCard mb-2" >
+    <div class="card-body">
+      <h5 style="color: #7D46D9;font: normal normal bold 24px Open Sans;">Car Details</h5>
+      <div class="row">
+          <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12">
+              <img src="../../../assets/images/Group 63815.svg" alt="" width="80"><br>
+              Engine Status
+              <mat-progress-bar mode="determinate" [value]=engine class="mt-1 engine-bar" style="width:60%;"></mat-progress-bar> {{engine}}%
+          </div>
+          <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12">
+            <img src="../../../assets/images/Group 63816.svg" alt="" width="70"><br>
+            <div class="mt-2">
+              Battery Status
+            <mat-progress-bar mode="determinate" [value]=battery class="mt-1 battery-bar" style="width:60%;"></mat-progress-bar>{{battery}}%
+            </div>
+            
+        </div>
+        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12">
+          <img src="../../../assets/images/Group 63817.svg" alt="" width="60" class="mt-2"><br>
+          <div class="mt-2">
+            Security Device
+          <mat-progress-bar mode="determinate" [value]=device class="mt-1 security-bar" style="width:60%;"></mat-progress-bar>{{device}}%
+          </div>
+      </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12">
+          <img src="../../../assets/images/carImg.jpeg" alt="" class="img-thumbnail" height="150" width="300">
+        </div>
+        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 mt-5">
+          <span style="font: normal normal 600 24px/33px Open Sans; font-size:16px;">{{checked1}} <span *ngIf="checked1 == 1">ITEM FINE!</span> <span *ngIf="checked1 == 0">ITEM FINE! </span> <span *ngIf="checked1 != 0 && checked1 !=1">ITEMS FINE!</span></span>
+          
+          <mat-progress-bar mode="determinate" [value]=checked1 style="width:70%;" ></mat-progress-bar>
+        </div>
+      </div>
+
+      <div class="mt-5">
+        <div class="row">
+            <div class="col-6">
+                <h5 class="customFont">Fuel</h5>
+            </div>
+            <div class="col-6">
+              <h5 class="float-right customFont">Low</h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+              <h5 class="customFont">Tire Pressure</h5>
+          </div>
+          <div class="col-6">
+            <h5 class="float-right customFont">Checked</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+            <h5 class="customFont">Car Battery</h5>
+        </div>
+        <div class="col-6">
+          <h5 class="float-right customFont">Checked</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+          <h5 class="customFont">Speed</h5>
+      </div>
+      <div class="col-6">
+        <h5 class="float-right customFont">Checked</h5>
+    </div>
+  </div>
+      </div>
+    </div>
+  </div>
 </div>
+    </div>
 </div>

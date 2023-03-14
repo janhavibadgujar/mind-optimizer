@@ -1,0 +1,111 @@
+.auth-fluid {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: row;
+    align-items: stretch;
+    background: transparent url('../../../assets/images/login1.png') 0% 0% no-repeat padding-box;
+    opacity: 1;
+
+}
+.bg-dark{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    opacity: .7 !important;
+}
+.auth-fluid .auth-fluid-right {
+    padding: 6rem 3rem;
+    flex: 1;
+    position: relative;
+    color: #fff;
+    background-color: transparent;
+    background: url(../../../assets/images/login1.png)  ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.auth-fluid-form-box{
+    padding-top: 1rem;
+}
+.auth-fluid .auth-fluid-form-box {
+    max-width: 600px;
+    border-radius: 0;
+    z-index: 2;
+    padding: 3rem 2rem;
+    background-color: white;
+    position: relative;
+    width: 100%;
+    color: #8c98a5;
+}
+.align-items-center{
+    -webkit-box-align: center !important;
+    align-items: center !important;
+}
+.input-group-text {
+    display: flex;
+    align-items: center;
+    padding: .45rem .9rem;
+    font-size: .9rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #07253F;
+    text-align: center;
+    white-space: nowrap;
+    background-color: white;
+    border-radius: .2rem;
+}
+.input-user,.input-pass{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.form-check-input {
+    width: 1em;
+    height: 1em;
+    margin-top: .25em;
+    vertical-align: top;
+    box-shadow: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 1px solid #07253F;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: background-color .15s ease-in-out,background-position .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.pass-group{
+    border-left: 0;
+}
+.input-user, .input-pass{
+    border-right: 0;
+}
+.form-control{
+    background-color: white;
+}
+.btnLogin,.btn-primary{
+    color: #fff;
+    background-color: #038FA6 !important;
+    border-color: #038FA6 !important;
+    background:#038FA6 !important;
+}
+.lnkAccount{
+    color: #038FA6 !important;
+}
+.cls_login{
+    color: #07253F !important;
+}
+.form-check-input:checked[type=checkbox]{
+    background-color: white;
+}
+
+.customStyle{
+    box-shadow: 0px 0px 8px #00000029;
+    border-radius: 5px;
+    opacity: 1;
+}
+

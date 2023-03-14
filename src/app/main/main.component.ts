@@ -26,10 +26,10 @@ export class MainComponent implements OnInit {
     },3300000);
 
     // console.log(typeof(this.loggedInUserName))
-    if (this.loggedInUserName === undefined){
-      this.loggedInUserName = localStorage.getItem('username');
-      // localStorage.removeItem('username');
-    }
+    // if (this.loggedInUserName === undefined){
+    //   this.loggedInUserName = localStorage.getItem('username');
+    //   // localStorage.removeItem('username');
+    // }
     
   }
   logoutUser(){

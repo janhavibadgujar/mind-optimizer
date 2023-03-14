@@ -1,0 +1,65 @@
+<div class="auth-fluid">
+    <div class="auth-fluid-form-box">
+        <div class="align-items-center d-flex h-100">
+            <div class="card-body">
+                <div class="text-center">
+                    <img src="../../../assets/images/mindOptimizersMain.png" class="mb-3" alt="" >
+                </div>
+                <h3 style="color:#7D46D9; margin-left:0%;font: normal normal bold 20px Gilroy ☞;">Sign Up</h3>
+                <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <div style="background-color: white;">
+                        <div class="mb-2">
+                            <div class="row">
+                                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <input class="form-control p-2 customStyle" type="text" required=""
+                                    placeholder="First name" formControlName="firstName">
+                                </div>
+                                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <input class="form-control p-2 customStyle" type="text" required=""
+                                    placeholder="Last name" formControlName="lastName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-2 mt-3">
+                            <div class="row">
+                                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                    <input class="form-control p-2 customStyle" type="email" required=""
+                                    placeholder="Email" formControlName="email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-2 mt-3">
+                            <div class="row">
+                                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                    <input class="form-control p-2 customStyle" type="password" required=""
+                                    placeholder="Password" formControlName="password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-2 mt-3">
+                            <div class="row">
+                                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                    <input class="form-control p-2 customStyle" type="password" required=""
+                                    placeholder="Confirm password" formControlName="confirmPassword">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid text-center mt-3" style="display: grid;">
+                        <button class="btn base-button" type="submit" [disabled]="registerForm.invalid">Sign Up
+                        </button>
+
+                        <h4 class="mt-3" style="color:black;">Already have an account? <span style="color:#7D46D9; cursor:pointer;" (click)="login()">Sign In</span></h4>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="ui-bg-overlay"></div>
+    <div class="auth-fluid-right bg-transparent">
+        <div class="auth-user-testimonial ">
+
+        </div> 
+    </div>
+</div>

@@ -3,22 +3,10 @@
     display: flex;
     align-items: center;
     min-height: 100vh;
-    /* width: 100%; */
     flex-direction: row;
     align-items: stretch;
     background: transparent url('../../../assets/images/login1.png') 0% 0% no-repeat padding-box;
-    /* background: url('../../../assets/images/login.jpg') 0% 0% no-repeat padding-box ; */
     opacity: 1;
-
-    /* background-size: contain; */
-    /* background-repeat: no-repeat; */
-
-    /* background: url(../../../assets/img/Paliotec_6_1390x970.png) no-repeat left; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-     */
 }
 .bg-dark{
     position: absolute;
@@ -68,7 +56,6 @@
     color: #07253F;
     text-align: center;
     white-space: nowrap;
-    /* border: 1px solid #424e5a; */
     background-color: white;
     border-radius: .2rem;
 }
@@ -81,7 +68,6 @@
     height: 1em;
     margin-top: .25em;
     vertical-align: top;
-    /* background-color: rgb(0 0 0 / 6%);; */
     box-shadow: none;
     background-repeat: no-repeat;
     background-position: center;
@@ -99,8 +85,6 @@
 }
 .form-control{
     background-color: white;
-    /* border: 1px solid #424e5a;
-    color: #000; */
 }
 .btnLogin,.btn-primary{
     color: #fff;
@@ -116,6 +100,5 @@
 }
 .form-check-input:checked[type=checkbox]{
     background-color: white;
-    /* background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e") */
 }
 

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" y1="-0.278" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#7d46d9"/>
+      <stop offset="1" stop-color="#4d21cc"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_63815" data-name="Group 63815" transform="translate(-2686 -3358)">
+    <rect id="Rectangle_9128" data-name="Rectangle 9128" width="100" height="100" transform="translate(2686 3358)" fill="#fff" opacity="0"/>
+    <g id="noun-car-engine-4938114" transform="translate(2689.354 3381.632)">
+      <path id="Path_31082" data-name="Path 31082" d="M219.058,231.388h-8.435v21.06h9.991l5.816,9.016h43.949V231.2h-9.991l-9.8-8.058H226.432Zm18.51,1.54h8.211l-.719,6.056h6.535l-10.314,14.9-.376-9.359-4.893.018Z" transform="translate(-192.417 -208.229)" fill="url(#linear-gradient)"/>
+      <path id="Path_31083" data-name="Path 31083" d="M302.345,162.181V156.3h8.521v-5.616H287.425V156.3h8.521v5.877Z" transform="translate(-253.41 -150.688)" fill="url(#linear-gradient)"/>
+      <path id="Path_31084" data-name="Path 31084" d="M125.788,284.282h5.3v-9.036h5.877v-6.4h-5.877v-5.615h-8.914v7.638h3.611Z" transform="translate(-122.177 -240.065)" fill="url(#linear-gradient)"/>
+      <path id="Path_31085" data-name="Path 31085" d="M523.426,281.56h-5.877v6.4h5.877v11.29l6.531-2.046V275.738l-6.531-2.046Z" transform="translate(-436.165 -248.372)" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>

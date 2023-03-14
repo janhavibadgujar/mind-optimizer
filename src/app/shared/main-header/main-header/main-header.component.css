@@ -123,10 +123,7 @@ i.bx-search.bx-search{
         top: -1.55rem;
         left:32%;
     }
-
-
-
-    
+ 
 }
 
 
@@ -162,7 +159,6 @@ i.bx-search.bx-search{
 
 .navHover{
     margin-right:10px;
-    /* background-color: #b384d536; */
     border: none !important;
     -webkit-transition: background-color 1000ms linear;
     -ms-transition: background-color 1000ms linear;
@@ -174,9 +170,4 @@ i.bx-search.bx-search{
     margin-right:10px;
     width:40px ;
     height:40px;
-    /* border-radius: 50%; */
 }
-  
-
-
-

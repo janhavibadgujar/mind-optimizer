@@ -25,9 +25,9 @@ export class MainHeaderComponent implements OnInit {
       if(res !=null || res != ''){
        this.pageInfo = res;
       }
-     this.userName = localStorage.getItem('userEmail')
+     //this.userName = localStorage.getItem('userEmail')
     })
-    this.getUserInfo() ;
+   // this.getUserInfo() ;
     // this.userName = localStorage.getItem('username');
     // this.profile.getUser().subscribe((response)=>{
     //   this.loggedUserInfo = response.data;

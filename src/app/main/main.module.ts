@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
-import { ProfileComponent } from './profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -19,7 +18,6 @@ import { AssetDetailComponent } from './asset-detail/asset-detail.component';
 @NgModule({
   declarations: [
     MainComponent,
-    ProfileComponent,
     MainHeaderComponent,
     MainDashboardComponent,
     AlertsComponent,

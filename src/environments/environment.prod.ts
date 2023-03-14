@@ -2,6 +2,6 @@ export const environment = {
   production: true,
   environmentName: 'PROD',
   baseUrl: 'https://mindoptimizerbackend.thinkathon.co.in',
-  pusherKey:''
-  //pusherKey:'4fc51f255f4be21a067d'
+  pusherKey:'Enter pusher key',
+  apiKey:'Enter google map api key'
 };

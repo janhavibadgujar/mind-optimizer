@@ -8,19 +8,32 @@
     border: none;
     box-shadow: 10px 5px 5px #64458145;
 }
+
 .assetCard:hover{
     background-color: #8a2be230;
-    /* transition: background-color 500ms linear; */
     -webkit-transition: background-color 500ms linear;
     -ms-transition: background-color 500ms linear;
     transition: background-color 500ms linear;
     border: none;
     box-shadow: 10px 5px 5px #6445818c;
+    cursor: pointer;
     
 }
 
 .image{
     width:50px ;
     height:50px;
-    /* border-radius: 50%; */
 }
+
+.scrollable{
+    overflow-y:auto; 
+    height:600px;
+}
+
+.scrollable::-webkit-scrollbar {
+    width: 6px !important; 
+    background: #C8A9FC 0% 0% no-repeat padding-box !important;
+    border-radius: 10px;
+opacity: 1;
+ }
+ 

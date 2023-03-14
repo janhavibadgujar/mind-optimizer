@@ -5,8 +5,9 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { elementAt } from 'rxjs';
 import { ProfileService } from 'src/app/services/profile/profile.service';
+
+
 
 export interface AlertDetails {
   // id:string;
@@ -46,8 +47,9 @@ export class AlertsComponent implements OnInit {
       value:['',Validators.required],
       condition:['',Validators.required],
     });
-    this.getAlerts();
-    this.getAllAssets()
+    this.SpinnerService.hide();
+     this.getAlerts();
+     this.getAllAssets()
   }
 
 conditions=[
@@ -73,7 +75,7 @@ conditions=[
       }
         const data={
           condition:x,
-          asset:this.assetList,
+          asset:this.assetList == undefined ? null : this.assetList,
           value:this.alertForm.value.value,
           alert_type:this.alertForm.value.name
         }
@@ -81,10 +83,13 @@ conditions=[
 
         this.profileService.createRule(data).subscribe((res:any)=>{
           this.toastr.success('Rule Created!!');
-          this.alertForm.reset();
+          document.getElementById("closePopUp")?.click();
+          this.closeModal();
           this.getAlerts();
         },(err:any)=>{
           this.toastr.error('Rule not created!');
+          document.getElementById("closePopUp")?.click();
+          this.closeModal();
         })
     }
 
@@ -133,6 +138,12 @@ conditions=[
   selectCondition(event:any)
   {
     this.condition_type=event.target.value
+  }
+
+  closeModal()
+  {
+    this.alertForm.reset();
+    this.condition_type=''
   }
 
 

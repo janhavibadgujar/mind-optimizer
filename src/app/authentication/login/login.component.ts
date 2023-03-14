@@ -54,11 +54,11 @@ export class LoginComponent implements OnInit {
         this.auth.loginUser(loginForm).subscribe((response:any)=>{
             console.log("response:",response)
             this.SpinnerService.hide();
-           this.toastr.success('Login Succesfully!')
+            this.toastr.success('Login Succesfully!')
             localStorage.setItem('userEmail',loginForm.username)
             localStorage.setItem('token',response?.access)
             localStorage.setItem('userId',response.id)
-            this.router.navigate(['/main-dashboard'])
+             this.router.navigate(['/main-dashboard'])
         },
         (Catcherror)=>{
           console.log("Error",Catcherror.error)
@@ -87,6 +87,11 @@ export class LoginComponent implements OnInit {
   onChangeEmail(event:any)
   {
 
+  }
+
+  register()
+  {
+    this.router.navigate(['/register'])
   }
 
 }

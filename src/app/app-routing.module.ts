@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: "", pathMatch: 'full',redirectTo:'/login'},
   { path: '', component: AuthenticationComponent, loadChildren: ()=>AuthenticationModule},
   { path: '', component: MainComponent, loadChildren: ()=>MainModule,canActivate:[AuthenticationGuard]},
-  {path:'**',component:AuthenticationComponent}
+  { path: '**', redirectTo: 'login'} 
 
 ];
 

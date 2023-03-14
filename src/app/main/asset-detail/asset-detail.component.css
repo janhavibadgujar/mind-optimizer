@@ -11,3 +11,32 @@
     max-width: 700px;
     margin-bottom: 8px;
   }
+
+
+::ng-deep  .engine-bar .mat-progress-bar-fill::after {
+    background-color: #25D600;
+  }
+
+::ng-deep  .battery-bar .mat-progress-bar-fill::after {
+    background-color: #FF5825;
+  }  
+
+::ng-deep  .security-bar .mat-progress-bar-fill::after {
+    background-color: #FFA125;
+  }  
+
+  .customFont{
+    font: normal normal bold 18px Open Sans;
+  }
+  .scrollable{
+    overflow-y:auto; 
+    height:700px;
+}
+
+.scrollable::-webkit-scrollbar {
+    width: 6px !important; /* Remove scrollbar space */
+    background: #C8A9FC 0% 0% no-repeat padding-box;; /* Optional: just make scrollbar invisible */
+    border-radius: 10px;
+    opacity: 1;
+    margin-top:5% !important;
+ }

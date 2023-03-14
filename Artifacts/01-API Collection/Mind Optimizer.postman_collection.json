@@ -1,0 +1,613 @@
+{
+	"info": {
+		"_postman_id": "a2de2962-1e0d-43db-93de-6d17deed6512",
+		"name": "Mind Optimizer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24503059"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc1NDIyODkwLCJpYXQiOjE2NzU0MjI1OTAsImp0aSI6IjJkYjE5YmE4Y2RiZTQyZDA5ZDFiNTM0MzRhOWU2NjMwIiwidXNlcl9pZCI6Mn0.N4seaUmixriO908jCC27r6kDWx-ccqMsTi-q8-q987I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Refresh_token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY3NTUwODU5NCwiaWF0IjoxNjc1NDIyMTk0LCJqdGkiOiIyNTAzNjA0MzI5YmQ0M2RkODU3NmRiYTljODA3YjliYiIsInVzZXJfaWQiOjJ9.feGM-tbesaGNT24I08DYpKAWIathG060XtGElPmMpoE",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY3NTUwODk5MCwiaWF0IjoxNjc1NDIyNTkwLCJqdGkiOiJmN2Q4NjY4Nzc5MTE0NTYyYmFkYmY2MWU0ZTgxYzFiNyIsInVzZXJfaWQiOjJ9._5ZuYgLTOqy0qw3hcMO0aQVEct8Sw2MU9rFOYVRi344\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/logout/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"logout",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "hoime",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc1NDIxMzcwLCJpYXQiOjE2NzU0MjEwNzAsImp0aSI6IjViNzhmMjlkNDY4ZDQ5NWI4ZDM1Y2JkNmI2OWFkMmMzIiwidXNlcl9pZCI6Mn0.TdxdzUryEvBgNAViEhCBBysstgCgBG3OMooV6Tv7kCc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/home/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"home",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc1NTI0ODAzLCJpYXQiOjE2NzU1MjQ1MDMsImp0aSI6IjYyZDM3NzlhODk5ZDRhOWViZGM4Njc1NTczMTRhNTNiIiwidXNlcl9pZCI6MX0.zRDT417OT1E0Ql6doFAkOLnUfZPLRdCkqOnqRc1c0C4"
+							},
+							{
+								"key": "Cookie",
+								"value": "csrftoken=NHrY6JjztRpqdVQwC8pbgNsXHZwT97rt5ZuYOevP7ASBzNRpSf3Bp4zwwkhki8Wb"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "testuser1@lkdsj.com",
+									"type": "text"
+								},
+								{
+									"key": "mobile_number",
+									"value": "7845784578",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": " India",
+									"type": "text"
+								},
+								{
+									"key": "user_photo",
+									"type": "file",
+									"src": "/home/lnv164/Pictures/Screenshots/Screenshot from 2022-10-27 21-00-49.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/update_profile/13/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"update_profile",
+								"13",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_all_alerts_for_user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "csrftoken=NHrY6JjztRpqdVQwC8pbgNsXHZwT97rt5ZuYOevP7ASBzNRpSf3Bp4zwwkhki8Wb"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/alert/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"alert",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"anupam1\",\n    \"email\":\"anupam.kushwaha@thinkitive.com\",\n    \"password\":\"anuapam@1234\"\n}"
+						},
+						"url": {
+							"raw": "https://mindoptimizerbackend.thinkathon.co.in/signup/",
+							"protocol": "https",
+							"host": [
+								"mindoptimizerbackend",
+								"thinkathon",
+								"co",
+								"in"
+							],
+							"path": [
+								"signup",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin\"\n}"
+						},
+						"url": {
+							"raw": "https://mindoptimizerbackend.thinkathon.co.in/login/",
+							"protocol": "https",
+							"host": [
+								"mindoptimizerbackend",
+								"thinkathon",
+								"co",
+								"in"
+							],
+							"path": [
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY3NTYwNzU3NSwiaWF0IjoxNjc1NTIxMTc1LCJqdGkiOiJiY2RlMjkxYzAyNmM0MDJiOWVmODMyZTIwN2FlMGE3MiIsInVzZXJfaWQiOjF9.IHlsDzsBa-GnP8aE3AQCHIaLXxEpoR19kuIPO23iuFg\"\n}"
+						},
+						"url": {
+							"raw": "https://mindoptimizerbackend.thinkathon.co.in/refresh/",
+							"protocol": "https",
+							"host": [
+								"mindoptimizerbackend",
+								"thinkathon",
+								"co",
+								"in"
+							],
+							"path": [
+								"refresh",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Profile Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc1NTMzNDE0LCJpYXQiOjE2NzU1MzMxMTQsImp0aSI6IjhiZWNhMWE2MWU0ZjQ5YmNhNjllYjFlNjkxNmViNTIyIiwidXNlcl9pZCI6NX0.0gkR2-7bGQPMWVRKyHxi5-v7Da_j1i73H2pnrcZd1cU"
+							}
+						],
+						"url": {
+							"raw": "https://mindoptimizerbackend.thinkathon.co.in/user_details/1",
+							"protocol": "https",
+							"host": [
+								"mindoptimizerbackend",
+								"thinkathon",
+								"co",
+								"in"
+							],
+							"path": [
+								"user_details",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Iot",
+			"item": [
+				{
+					"name": "Create Things",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc1NTQzMjA0LCJpYXQiOjE2NzU1NDI5MDQsImp0aSI6IjQ0ZTEzYTJiMzhlNzQ5ODc5OTNmYzllZGMwMTI4YmVlIiwidXNlcl9pZCI6MX0.UjMu8Z3itQSeM0QnhgQNFsQugXuJdqVp2HlFhNHBPnE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"thing_name\":\"ThingsTests2\",\n    \"thing_type_name\":\"TwoWheeler\",\n    \"asset_id\":\"3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/things/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"things",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Things",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc1NTAyNjQ5LCJpYXQiOjE2NzU1MDIzNDksImp0aSI6IjhkNzMzOWU2ZTc2NTQzYmVhNjBmOTMyZWQwZjRmZjc5IiwidXNlcl9pZCI6MX0.AsWNx3OtAW0lH71Jj0qW_2BeVl_HfIzySSFYVFNaXOQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ThingName\":\"ThingsTests\",\n    \"ThingTypeName\":\"TwoWheeler\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/things/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"things",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Assert Data",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc1NTM5ODc1LCJpYXQiOjE2NzU1Mzk1NzUsImp0aSI6IjllM2ZiZTEzZmY1NjQyZDA5NTI4OGIxOWFmOTZhMDMwIiwidXNlcl9pZCI6MX0.1CtcRl-ec6NkNggN_N2tID9aZ9SLf7ZiJ4JoXoLogRE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ThingName\":\"ThingsTests\",\n    \"ThingTypeName\":\"TwoWheeler\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/get_data/2/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"get_data",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Command",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ThingName\":\"ThingsTestsNew Data TAATA\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/send_command/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"send_command",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Assets",
+			"item": [
+				{
+					"name": "Get All Assets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mindoptimizerbackend.thinkathon.co.in/asset/1",
+							"protocol": "https",
+							"host": [
+								"mindoptimizerbackend",
+								"thinkathon",
+								"co",
+								"in"
+							],
+							"path": [
+								"asset",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Assets",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"vehicle_type\": \"asdfdsaf\",\n    \"vehicle_number\": \"afdsf\",\n    \"lat\": \"95.36\",\n    \"long\": \"36.32\",\n    \"user\": \"1\"\n}"
+						},
+						"url": {
+							"raw": "https://mindoptimizerbackend.thinkathon.co.in/asset/",
+							"protocol": "https",
+							"host": [
+								"mindoptimizerbackend",
+								"thinkathon",
+								"co",
+								"in"
+							],
+							"path": [
+								"asset",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Alerts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mindoptimizerbackend.thinkathon.co.in/alert/1",
+							"protocol": "https",
+							"host": [
+								"mindoptimizerbackend",
+								"thinkathon",
+								"co",
+								"in"
+							],
+							"path": [
+								"alert",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Rule",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"condition\": \"temperature\",\n    \"asset\": \"1\",\n    \"value\": \"20\"\n}"
+						},
+						"url": {
+							"raw": "http://mindoptimizerbackend.thinkathon.co.in/user_details/rule/",
+							"protocol": "http",
+							"host": [
+								"mindoptimizerbackend",
+								"thinkathon",
+								"co",
+								"in"
+							],
+							"path": [
+								"user_details",
+								"rule",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

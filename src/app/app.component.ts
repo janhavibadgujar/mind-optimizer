@@ -21,21 +21,16 @@ export class AppComponent implements OnInit {
     var that = this;
     let channelName = 'MindOptimizerAssetTopic';
     var channel = that.pusherService.subscribe(channelName);
-    console.log("channelName",channelName)
+  
     console.log("channel",channel);
-    channel.bind(`6787f95d-17fc-5c2c-7bbf-4f88eb3ea2c7`, function (data:any) {
-      console.log('outside if data');
+    channel.bind(`device-detected`, function (data:any) {
       that.gettingDeviceData(data);
     })
-    // channel.bind(`device-undetected-for-${localStorage.getItem('organization_id')}`, function (data:any) {
-    //   console.log('outside if data');
-    //   that.gettingDeviceData(data);
-    // })
+  
   }
 
   gettingDeviceData(data:any)
   {
-    console.log("PUSHER DATA----",data);
     this.dataService.nextMessage(data);
   }
 }

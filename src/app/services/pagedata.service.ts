@@ -81,7 +81,6 @@ export class PagedataService {
     }
 
     nextMessage(deviceUpdate: string) {
-        console.log("MESSAGE----",deviceUpdate)
       this.deviceUpdate.next(deviceUpdate)
     }
 

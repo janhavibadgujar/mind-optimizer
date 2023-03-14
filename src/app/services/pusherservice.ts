@@ -17,12 +17,10 @@ export class PusherService {
     }
 
     subscribe(channel:any) {
-        console.log("pusherClient",channel)
         return this.pusherClient.subscribe(channel);
     }
 
     unsubscribe(channel:any){
-        console.log("pusherClient stop ======================",channel)
         return this.pusherClient.unsubscribe(channel);
     }
 }

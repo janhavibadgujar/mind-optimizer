@@ -1,30 +1,31 @@
 <!-- <div id="map" style=" height: 100%;" mat-card-image="mat-card-image"></div> -->
 <div class="container-fluid">
     <div class="row mb-0">
-      
-        <div class="col-md-4">
-            <div *ngIf="data.length == 0">
+        <span style="font: normal normal bold 20px Open Sans;">Assets</span>
+        <div class="col-md-4 scrollable">
+            <div *ngIf="carDetails.length == 0">
                 <h1>No Assets Available</h1>
             </div>
-            <div class=" mb-2" *ngFor="let item of data">
-                <div class="card assetCard" (click)="showAssetDetails(item)">
-                    <div class="card-body">
-                        
-                        <div style="display: inline-block;">
-                            <img *ngIf="item.user_photo == null" src="../../../assets/images/feature-img-3.jpg" alt="" class="image" style="border-radius: 50%;">
-                            <img *ngIf="item.user_photo != null" src="{{BaseUrl}}{{item.user_photo}}" alt="" class="image" style="border-radius: 50%;">
+                <div class=" mb-2" *ngFor="let item of carDetails">
+                    <div class="card assetCard" (click)="showAssetDetails(item?.asset_id)">
+                        <div class="card-body">
+                            
+                            <div style="display: inline-block;">
+                                <img src="../../../assets/images/Group 63785.png" alt="" class="image" style="border-radius: 50%;">
+                                <!-- <img *ngIf="item.user_photo == null" src="../../../assets/images/feature-img-3.jpg" alt="" class="image" style="border-radius: 50%;">
+                                <img *ngIf="item.user_photo != null" src="{{BaseUrl}}{{item.user_photo}}" alt="" class="image" style="border-radius: 50%;"> -->
+                            </div>
+                            <span style="font-weight: bold; margin-left:10px;">{{item?.vechile}}</span>
+                          
+                          <p class="card-text" style="margin-left: 60px;">{{item?.name}} | {{item?.number}}</p>
+                         
                         </div>
-                        <span style="font-weight: bold; margin-left:10px;">{{item.vehicle_number}}</span>
-                      
-                      <p class="card-text ml-5" style="margin-left: 60px;">{{item.vehicle_type | titlecase}}</p>
-                     
-                    </div>
-                  </div>
-            </div>
-            
+                      </div>
+                </div>
+
         </div>
         <div class="col-md-8">
-            <mat-card class="pb-0 mat-elevation-z8 mapCard">
+            <mat-card class="pb-0 mat-elevation-z8" style="height: 35rem;">
                 <mat-card-title class="h6 d-flex">
                     <mat-icon>location_on</mat-icon>
                     <span class="mt-1 mx-2">Map</span>
