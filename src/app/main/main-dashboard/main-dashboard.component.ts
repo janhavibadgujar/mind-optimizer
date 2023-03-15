@@ -18,13 +18,15 @@ export class MainDashboardComponent implements OnInit,OnDestroy {
   BaseUrl: string = environment.baseUrl;
   Locations: any=[];
   evseList: any=[];
-  
+  // markers:any;
+
   iconBase =
     "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
   data=[
     {
         "charger_city": "nashik",
-        "charger_location": "(20.705350000000067, 77.00218000000007)",
+        "asset_id":"1",
+        "charger_location": "(22.5726, 88.3639)",
         "created_at": "2022-10-06 13:37:43.429749",
         "location_description": "vidarbh",
         "unit_state": "",
@@ -47,6 +49,7 @@ export class MainDashboardComponent implements OnInit,OnDestroy {
     },
     {
         "charger_city": "dadar",
+        "asset_id":"2",
         "charger_location": "(18.940170000000023, 72.83489000000003)",
         "created_at": "2022-10-06 09:52:41.907482",
         "location_description": "good place",
@@ -70,6 +73,7 @@ export class MainDashboardComponent implements OnInit,OnDestroy {
     },
     {
         "charger_location": "(18.504210000000057, 73.85286000000008)",
+        "asset_id":"3",
         "created_at": "2022-09-21 14:26:08.934433",
         "unit_state": "not charging\n",
         "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4OS4xKTl6LKsow+NHUda\n+0MTjJjc1+T0eh/QDkOsoT2jdr3B/bZpX/r9QAoO1vPgj1ePgTZsNSscZNjIUl8u\nEdzqfpEUVQ1LUXQcXqltJD7zGTJCGv1S2zcu3yH4u9KDv9Tu0qTkauF1xKYq2kbY\n1TXKv7a649o8xwhnnlSli5GWa1r4yInXDo5dhQW40h28hpSNvza4ohfsBiL1agyu\n37wMqazCt/hYQMeCRHMr4tJGVfsoDx5XceS4JjOGEnW+VULvS2U5aT4DSWBW4iwU\nlAv89BxyrP061pE8QubOD/yVQG93UbnJ8NCysDudU6Zl3nPaoWT6IoUUoVRT4N/P\nUQIDAQAB\n-----END PUBLIC KEY-----\n",
@@ -87,33 +91,36 @@ export class MainDashboardComponent implements OnInit,OnDestroy {
         "private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIEpQIBAAKCAQEA4OS4xKTl6LKsow+NHUda+0MTjJjc1+T0eh/QDkOsoT2jdr3B\n/bZpX/r9QAoO1vPgj1ePgTZsNSscZNjIUl8uEdzqfpEUVQ1LUXQcXqltJD7zGTJC\nGv1S2zcu3yH4u9KDv9Tu0qTkauF1xKYq2kbY1TXKv7a649o8xwhnnlSli5GWa1r4\nyInXDo5dhQW40h28hpSNvza4ohfsBiL1agyu37wMqazCt/hYQMeCRHMr4tJGVfso\nDx5XceS4JjOGEnW+VULvS2U5aT4DSWBW4iwUlAv89BxyrP061pE8QubOD/yVQG93\nUbnJ8NCysDudU6Zl3nPaoWT6IoUUoVRT4N/PUQIDAQABAoIBAHoCPGea2oxzGwvf\n7Pv8cVStoFZ/vBh4w1XaGoMSnf5gNWW/LxaZNvP2dByhGEnvx12c8GL2hqAVwnLH\n1W4y6wiP5LxDs1ctPjZzmsyUeHzYlgSOaqS/2IrLlmdBw/MKE6YoPGUVRkLiDIVi\nbQ88rniFlXiLBzuEc8K7QZP5clKT5fceP/7wxPwyaf0IN1QdBuR5kYbBL2PIzvjQ\naEIJCjbUPYQ1GFBCNqBqhy6/UtZxsQAdy09s61vFgjghaWyzUMVAAXX9FuhsJQIV\ny5RltPf+XcYOqgNI1McmxoHcrJrpS85a9TMq/syD6FkgvWfNW75xHCP+JntfY/Rc\n3kg38VECgYEA+3icv9QOMsB8Rh+NNFITLOzbbHVP9UvwYsUR6vViRFzIdGHifIvm\nAZ1BUmdD5RQAtXo/u396xE8vFlvx3/RnNowNCBdL2VIFLnfDLABgWeYONImkHjjS\ny8tjQiXG8cHxzwaPonoE9NDHAHocfaSLDkG7f8e4xHOAFRZ53GqCbr0CgYEA5PGT\nOPuBOPG/edj1h9EpkIhrAGkfiO3wRuwYZhpPMFe/YmQ9ll1NXaPTUUVCN0O3QOGA\nOpc56iazBo7omApWZ976ZXNIiW4ZIiHIChWIpKRrg6bartR36BILZbcBAw04XhJe\neF7jF+5qtEjn8gnhXO1kKOcBVU2EOqKv4Wso5iUCgYEAzYyEC+TIikF+E098+xRP\najxdCuVFK0scPY+6GqTi4uA4VbEhEQ7FPfKNT07rV1cnUS+Q4rDL56SV55/WMGo0\n54hIqqFoNUXuyFHKbbANEc6TM+yCAtYNr9ka1BnO6RPPlJpXU8aLQJVa5I/rs+OI\namneWg8lfyatvg72Iu3Imb0CgYEAlydbwSJkFbmeZo80xD/3RkKbCsFdHaWinuCf\n10GFiPBWHlr6Qn1FaA6SpTSp3BzsL3zykTxo80wrpKfTrxYcKCYSgcqUWJAFLgDJ\ntsay2ajohxoxhX4n0GOhfL1PgLlIvus3zhcvrgwuDOuZn7agQR9Goq6pta0hISlq\nH9UFQrUCgYEAgJWRFP9vCKVGTUk2uEz8Rkqgr1L2VMSG17mxrF/8U4EtxN8mvdZO\n2EM8y2BPScCmSDBqmRPd6Q/PEQVf8poAmWhIgMZINzs4/diBtGasbrSWh02x6U0t\n7P3weVlQ44YQlHXaZRaXrRi2ZiHn/VTSCpCvvPSq2dZQi1U1woeiCMI=\n-----END RSA PRIVATE KEY-----\n",
         "station_type": "private station"
     },
-    {
-        "charger_city": "nashik",
-        "charger_location": "(25.269510000000025, 55.30884000000003)",
-        "created_at": "2022-10-05 18:21:53.927652",
-        "location_description": "good place",
-        "unit_state": "",
-        "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvJNSG7bk5GjXUIc5veAc\nL8nZN4Gk5vy8MacTjCAW2Kfi24B5u6jAsRObrckIYAa3mYOLb0DIe7aldLpIF+hz\nis59I9T7fCk3uSisr0z3aUOVoh1mKH3UVPvR3hqrUrWPbt6WaoqL6K2/bQjW7W1j\nHrLey8ulICyXBN8dFqp+xNbH2RCVlvtDFmkhqyrb8iXvFbNP6tOlVBva3maqggHu\nIZTiqI6dfeKNw36/g7p3krqvqS2y1x08ZTu42iOzuLAs8p28sIUDTcHWxeCqBFhg\n1Sef4K5cEemQWP3BBAvUJeiNelJEG6ZxYElKQVHHepqkkBq2Xkg0OtVSef3+gNOe\nnwIDAQAB\n-----END PUBLIC KEY-----\n",
-        "certificate_id": "69ec4ba6944d9b666dac7c0475765f92774ad90896c3512948317cbdc0750c8f",
-        "certificate_pem": "-----BEGIN CERTIFICATE-----\nMIIDWjCCAkKgAwIBAgIVANvmTHKsKnsYbe7Z/Mx4p/3Lcdc9MA0GCSqGSIb3DQEB\nCwUAME0xSzBJBgNVBAsMQkFtYXpvbiBXZWIgU2VydmljZXMgTz1BbWF6b24uY29t\nIEluYy4gTD1TZWF0dGxlIFNUPVdhc2hpbmd0b24gQz1VUzAeFw0yMjEwMDUxODE5\nNTRaFw00OTEyMzEyMzU5NTlaMB4xHDAaBgNVBAMME0FXUyBJb1QgQ2VydGlmaWNh\ndGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC8k1IbtuTkaNdQhzm9\n4Bwvydk3gaTm/LwxpxOMIBbYp+LbgHm7qMCxE5utyQhgBreZg4tvQMh7tqV0ukgX\n6HOKzn0j1Pt8KTe5KKyvTPdpQ5WiHWYofdRU+9HeGqtStY9u3pZqiovorb9tCNbt\nbWMest7Ly6UgLJcE3x0Wqn7E1sfZEJWW+0MWaSGrKtvyJe8Vs0/q06VUG9reZqqC\nAe4hlOKojp194o3Dfr+DuneSuq+pLbLXHTxlO7jaI7O4sCzynbywhQNNwdbF4KoE\nWGDVJ5/grlwR6ZBY/cEEC9Ql6I16UkQbpnFgSUpBUcd6mqSQGrZeSDQ61VJ5/f6A\n056fAgMBAAGjYDBeMB8GA1UdIwQYMBaAFKqpL7aacnEKF7jiMYD7rJT9QrsjMB0G\nA1UdDgQWBBTXBF/ib8jcZIdjFnLQfQ2ibLujlDAMBgNVHRMBAf8EAjAAMA4GA1Ud\nDwEB/wQEAwIHgDANBgkqhkiG9w0BAQsFAAOCAQEAmrW/4qD/2Bq/LCWico3WvLcd\nicigAfbCO/LderobmCSAJOSUdKo1IfEup6XC3AH4OvtbbWyxekcYh4eBDODmyLOx\n+zXI1A9nr/eP4gzpEzz6kXZ9nS04e/wJ3Gq63abHpM5q3tKQ+i/N3YwTmoQqjRTt\noUHi3GefgEvhUlyF1y+Fy+vlnyOtG1INO+Df5HCwenpsv1rWWQFU+uU9O/cz7OWV\nb6QBLLXTX1f85Bpz6VsI9KxX1tu4m8QaFBQIX8dKdR20E0/wc1QnN/Tm0IQu5LLA\nlwyGqPW0CnpIBoCMz4ruAdZ/ozYA0G/PyIit+0dde7QI7nmgY3Y+OruLY7cXIw==\n-----END CERTIFICATE-----\n",
-        "charger_nickname": "Charger-5",
-        "postal_code": "422111",
-        "charger_country": "united states",
-        "updated_at": "2022-10-06 13:34:40.521005",
-        "UserId": "8b57f5bd-8a58-4a8b-aebf-5bff746172ab",
-        "certificate_arn": "arn:aws:iot:us-east-1:333982647306:cert/69ec4ba6944d9b666dac7c0475765f92774ad90896c3512948317cbdc0750c8f",
-        "charger_state": "ABC",
-        "total_power": "0",
-        "co2_offset": "0",
-        "charger_number": "Abc-dds",
-        "charger_address": "dubai",
-        "private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIEpQIBAAKCAQEAvJNSG7bk5GjXUIc5veAcL8nZN4Gk5vy8MacTjCAW2Kfi24B5\nu6jAsRObrckIYAa3mYOLb0DIe7aldLpIF+hzis59I9T7fCk3uSisr0z3aUOVoh1m\nKH3UVPvR3hqrUrWPbt6WaoqL6K2/bQjW7W1jHrLey8ulICyXBN8dFqp+xNbH2RCV\nlvtDFmkhqyrb8iXvFbNP6tOlVBva3maqggHuIZTiqI6dfeKNw36/g7p3krqvqS2y\n1x08ZTu42iOzuLAs8p28sIUDTcHWxeCqBFhg1Sef4K5cEemQWP3BBAvUJeiNelJE\nG6ZxYElKQVHHepqkkBq2Xkg0OtVSef3+gNOenwIDAQABAoIBAQCnVac3tpz4Xlwq\nNkSzy+nXMitRiPZ2jnDFMrgy0MrVKG0zUJc1QfLzby3nEYwgAfXsAIG7kGYW+aVq\npl6Q8JGO69q58CXVMJIk+QX7bLXjL7jZKXNcnQPNAcRibZH3i+sie9xH4Hd0WrGS\nJJTsDPQ26oyvlR8LJOZByWZ7lYF2UoR7JvhigLonJ9hENcjnZRsmBo1zRbASBhy9\nn2JUv0ryaxPmEpuR6jSL5dzTB+i6VDULneYV8eJHJPgFNa/3DzxMoo+kA7jCIHhx\nInEIvmm5WbG7iAzbRJ5X/2Ii2F6fKzrpWyYaPh3+hQqDi6eCl6evoNefh2/NsBf/\nDl2/RRbxAoGBAPZEhh6k5YZJFUgTfZ04kTCSv0ugf3rSp1eQpslJGcUvJ5qqzwuc\nHs+/75dZsgNdNfqLKe3RLPJ4L8CfvlrmvYjTx57XJIwiSSI7/vMzOHiaB3K0eRrs\nV15mN5LddR9RoO6EpMTaLw5wnumalkSzg4c9oYvolplSEbNg/oLb3EuXAoGBAMQH\nIMvEKZZ4PsDrOz7DhVEsYTqgF8gqZlkkafcwFjzB49b0ipxRGgq/5xIvcb0DXuoX\nj8THAeH4z/J+8hDbWqRQkRUwE9zGEdutxH4is3lsk4SfVdLJV5ISnp+AgbhHLYMc\nH/GEeRtLdf0lLzWJ4j2UOD091y8Lt3pIZt6yMMY5AoGBAICo1iUmYx+gCPVJ8YN1\nLS1iTXy2UkOZ0IGH+gsJHOSOuTMt79OR8er5zLOW0dC+HthRYktzz/axYclR68JT\n8EuO0SikH9zygKDZFV57sRIY7rE3plmxhge0gW5CMtF09Q4H0Iljr9fscKl88Ord\nmmbKhR6yGhPp84NytiUptlLrAoGAQFXqkJXH5GeAiQZrAlVfOt3q5zfFtl8cCiOm\nV4dDtRsZcOH/YABKIL8M0m4Z0SP7Ea878yQxXP2xGfBJ9/hWDlmW1DJcQngLQmMM\ney1eY/qbi8pTe4OzJvDPeJ/PczCBImenoDePG8MvbS64CMVBKF6t+oOCTSF2TT7X\n7DzlPxkCgYEA4eydZhVNMfCy4ktR5anZxUvo5oop1K3ZzeyafKXCh8lCnogybhbZ\nuOi2xN6eS/M+X2fv1AoKN2JLmJrH8W3T4jS0FF40X4nfXbjjeZtvdfR9V2N8O8jO\niH4heFlodGilGAcva4SxnD9ROVTf8XqgAOzxb2WpMtqs6Se3uVOG4II=\n-----END RSA PRIVATE KEY-----\n",
-        "station_type": "private station"
-    }
+    // {
+    //     "charger_city": "nashik",
+    //     "charger_location": "(25.269510000000025, 55.30884000000003)",
+    //     "created_at": "2022-10-05 18:21:53.927652",
+    //     "location_description": "good place",
+    //     "unit_state": "",
+    //     "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvJNSG7bk5GjXUIc5veAc\nL8nZN4Gk5vy8MacTjCAW2Kfi24B5u6jAsRObrckIYAa3mYOLb0DIe7aldLpIF+hz\nis59I9T7fCk3uSisr0z3aUOVoh1mKH3UVPvR3hqrUrWPbt6WaoqL6K2/bQjW7W1j\nHrLey8ulICyXBN8dFqp+xNbH2RCVlvtDFmkhqyrb8iXvFbNP6tOlVBva3maqggHu\nIZTiqI6dfeKNw36/g7p3krqvqS2y1x08ZTu42iOzuLAs8p28sIUDTcHWxeCqBFhg\n1Sef4K5cEemQWP3BBAvUJeiNelJEG6ZxYElKQVHHepqkkBq2Xkg0OtVSef3+gNOe\nnwIDAQAB\n-----END PUBLIC KEY-----\n",
+    //     "certificate_id": "69ec4ba6944d9b666dac7c0475765f92774ad90896c3512948317cbdc0750c8f",
+    //     "certificate_pem": "-----BEGIN CERTIFICATE-----\nMIIDWjCCAkKgAwIBAgIVANvmTHKsKnsYbe7Z/Mx4p/3Lcdc9MA0GCSqGSIb3DQEB\nCwUAME0xSzBJBgNVBAsMQkFtYXpvbiBXZWIgU2VydmljZXMgTz1BbWF6b24uY29t\nIEluYy4gTD1TZWF0dGxlIFNUPVdhc2hpbmd0b24gQz1VUzAeFw0yMjEwMDUxODE5\nNTRaFw00OTEyMzEyMzU5NTlaMB4xHDAaBgNVBAMME0FXUyBJb1QgQ2VydGlmaWNh\ndGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC8k1IbtuTkaNdQhzm9\n4Bwvydk3gaTm/LwxpxOMIBbYp+LbgHm7qMCxE5utyQhgBreZg4tvQMh7tqV0ukgX\n6HOKzn0j1Pt8KTe5KKyvTPdpQ5WiHWYofdRU+9HeGqtStY9u3pZqiovorb9tCNbt\nbWMest7Ly6UgLJcE3x0Wqn7E1sfZEJWW+0MWaSGrKtvyJe8Vs0/q06VUG9reZqqC\nAe4hlOKojp194o3Dfr+DuneSuq+pLbLXHTxlO7jaI7O4sCzynbywhQNNwdbF4KoE\nWGDVJ5/grlwR6ZBY/cEEC9Ql6I16UkQbpnFgSUpBUcd6mqSQGrZeSDQ61VJ5/f6A\n056fAgMBAAGjYDBeMB8GA1UdIwQYMBaAFKqpL7aacnEKF7jiMYD7rJT9QrsjMB0G\nA1UdDgQWBBTXBF/ib8jcZIdjFnLQfQ2ibLujlDAMBgNVHRMBAf8EAjAAMA4GA1Ud\nDwEB/wQEAwIHgDANBgkqhkiG9w0BAQsFAAOCAQEAmrW/4qD/2Bq/LCWico3WvLcd\nicigAfbCO/LderobmCSAJOSUdKo1IfEup6XC3AH4OvtbbWyxekcYh4eBDODmyLOx\n+zXI1A9nr/eP4gzpEzz6kXZ9nS04e/wJ3Gq63abHpM5q3tKQ+i/N3YwTmoQqjRTt\noUHi3GefgEvhUlyF1y+Fy+vlnyOtG1INO+Df5HCwenpsv1rWWQFU+uU9O/cz7OWV\nb6QBLLXTX1f85Bpz6VsI9KxX1tu4m8QaFBQIX8dKdR20E0/wc1QnN/Tm0IQu5LLA\nlwyGqPW0CnpIBoCMz4ruAdZ/ozYA0G/PyIit+0dde7QI7nmgY3Y+OruLY7cXIw==\n-----END CERTIFICATE-----\n",
+    //     "charger_nickname": "Charger-5",
+    //     "postal_code": "422111",
+    //     "charger_country": "united states",
+    //     "updated_at": "2022-10-06 13:34:40.521005",
+    //     "UserId": "8b57f5bd-8a58-4a8b-aebf-5bff746172ab",
+    //     "certificate_arn": "arn:aws:iot:us-east-1:333982647306:cert/69ec4ba6944d9b666dac7c0475765f92774ad90896c3512948317cbdc0750c8f",
+    //     "charger_state": "ABC",
+    //     "total_power": "0",
+    //     "co2_offset": "0",
+    //     "charger_number": "Abc-dds",
+    //     "charger_address": "dubai",
+    //     "private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIEpQIBAAKCAQEAvJNSG7bk5GjXUIc5veAcL8nZN4Gk5vy8MacTjCAW2Kfi24B5\nu6jAsRObrckIYAa3mYOLb0DIe7aldLpIF+hzis59I9T7fCk3uSisr0z3aUOVoh1m\nKH3UVPvR3hqrUrWPbt6WaoqL6K2/bQjW7W1jHrLey8ulICyXBN8dFqp+xNbH2RCV\nlvtDFmkhqyrb8iXvFbNP6tOlVBva3maqggHuIZTiqI6dfeKNw36/g7p3krqvqS2y\n1x08ZTu42iOzuLAs8p28sIUDTcHWxeCqBFhg1Sef4K5cEemQWP3BBAvUJeiNelJE\nG6ZxYElKQVHHepqkkBq2Xkg0OtVSef3+gNOenwIDAQABAoIBAQCnVac3tpz4Xlwq\nNkSzy+nXMitRiPZ2jnDFMrgy0MrVKG0zUJc1QfLzby3nEYwgAfXsAIG7kGYW+aVq\npl6Q8JGO69q58CXVMJIk+QX7bLXjL7jZKXNcnQPNAcRibZH3i+sie9xH4Hd0WrGS\nJJTsDPQ26oyvlR8LJOZByWZ7lYF2UoR7JvhigLonJ9hENcjnZRsmBo1zRbASBhy9\nn2JUv0ryaxPmEpuR6jSL5dzTB+i6VDULneYV8eJHJPgFNa/3DzxMoo+kA7jCIHhx\nInEIvmm5WbG7iAzbRJ5X/2Ii2F6fKzrpWyYaPh3+hQqDi6eCl6evoNefh2/NsBf/\nDl2/RRbxAoGBAPZEhh6k5YZJFUgTfZ04kTCSv0ugf3rSp1eQpslJGcUvJ5qqzwuc\nHs+/75dZsgNdNfqLKe3RLPJ4L8CfvlrmvYjTx57XJIwiSSI7/vMzOHiaB3K0eRrs\nV15mN5LddR9RoO6EpMTaLw5wnumalkSzg4c9oYvolplSEbNg/oLb3EuXAoGBAMQH\nIMvEKZZ4PsDrOz7DhVEsYTqgF8gqZlkkafcwFjzB49b0ipxRGgq/5xIvcb0DXuoX\nj8THAeH4z/J+8hDbWqRQkRUwE9zGEdutxH4is3lsk4SfVdLJV5ISnp+AgbhHLYMc\nH/GEeRtLdf0lLzWJ4j2UOD091y8Lt3pIZt6yMMY5AoGBAICo1iUmYx+gCPVJ8YN1\nLS1iTXy2UkOZ0IGH+gsJHOSOuTMt79OR8er5zLOW0dC+HthRYktzz/axYclR68JT\n8EuO0SikH9zygKDZFV57sRIY7rE3plmxhge0gW5CMtF09Q4H0Iljr9fscKl88Ord\nmmbKhR6yGhPp84NytiUptlLrAoGAQFXqkJXH5GeAiQZrAlVfOt3q5zfFtl8cCiOm\nV4dDtRsZcOH/YABKIL8M0m4Z0SP7Ea878yQxXP2xGfBJ9/hWDlmW1DJcQngLQmMM\ney1eY/qbi8pTe4OzJvDPeJ/PczCBImenoDePG8MvbS64CMVBKF6t+oOCTSF2TT7X\n7DzlPxkCgYEA4eydZhVNMfCy4ktR5anZxUvo5oop1K3ZzeyafKXCh8lCnogybhbZ\nuOi2xN6eS/M+X2fv1AoKN2JLmJrH8W3T4jS0FF40X4nfXbjjeZtvdfR9V2N8O8jO\niH4heFlodGilGAcva4SxnD9ROVTf8XqgAOzxb2WpMtqs6Se3uVOG4II=\n-----END RSA PRIVATE KEY-----\n",
+    //     "station_type": "private station"
+    // }
 ]
-  map:any
-  marker:any
+  // map:any
   pusherData: any;
+  marker!:google.maps.Marker;
+  markers:any=[];
+
+
   // allAssets: any;
 
   constructor(
@@ -139,7 +146,12 @@ export class MainDashboardComponent implements OnInit,OnDestroy {
       if(res.length == undefined)
       {
         this.pusherData=res;
-        //this.generateLocationList()
+    
+        var objIndex = this.data.findIndex((obj => obj.asset_id == res?.device?.asset_id));
+        this.data[objIndex].charger_location=`(${res?.device?.latitude}, ${res?.device?.longitude})`;
+        var myLatlng = new google.maps.LatLng(res?.device?.latitude,res?.device?.longitude);
+        this.markers[objIndex].set('position', myLatlng);
+
       }
     })
 
@@ -163,7 +175,6 @@ export class MainDashboardComponent implements OnInit,OnDestroy {
   generateLocationList() {
     this.SpinnerService.hide()
     this.Locations=[]
-    console.log('this.data', this.data)
     this.data.forEach((element: any) => {
       this.evseList = [];
       this.evseList = [];
@@ -171,7 +182,7 @@ export class MainDashboardComponent implements OnInit,OnDestroy {
       let lat = latLong[0].replace('(', '');
       let lng = latLong[1].replace(')', '');
     
-      this.evseList.push(element.charger_nickname, lat, lng);
+      this.evseList.push(lat, lng);
       this.Locations.push(this.evseList);
     });
      this.showMapLocation(this.Locations);
@@ -263,23 +274,24 @@ carDetails=[
     LocationsForMap = this.Locations;
 
     map = new google.maps.Map(mapElement, {
-      zoom: 3,
+      zoom: 4,
       center: new google.maps.LatLng(28.704, 77.25),
       mapTypeId: google.maps.MapTypeId.ROADMAP,
     });
     var infowindow = new google.maps.InfoWindow();
-    var marker,i;
-
+    var markers1,i;
+    
     for (i = 0; i < LocationsForMap.length; i++) {
-      marker = new google.maps.Marker({
+      markers1 = new google.maps.Marker({
         position: new google.maps.LatLng(
-          LocationsForMap[i][1],
-          LocationsForMap[i][2]
+          LocationsForMap[i][0],
+          LocationsForMap[i][1]
         ),
         map: map,
       });
+    this.markers.push(markers1)
     }
   }
 
- 
+  
 }

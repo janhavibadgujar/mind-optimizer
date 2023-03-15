@@ -51,22 +51,22 @@ export class LoginComponent implements OnInit {
         password: this.loginForm.value.password,
       }
       if (this.loginForm.valid){
-        this.auth.loginUser(loginForm).subscribe((response:any)=>{
-            console.log("response:",response)
-            this.SpinnerService.hide();
+        //this.auth.loginUser(loginForm).subscribe((response:any)=>{
+          //  console.log("response:",response)
+           // this.SpinnerService.hide();
             this.toastr.success('Login Succesfully!')
-            localStorage.setItem('userEmail',loginForm.username)
-            localStorage.setItem('token',response?.access)
-            localStorage.setItem('userId',response.id)
+            // localStorage.setItem('userEmail',loginForm.username)
+            // localStorage.setItem('token',response?.access)
+            // localStorage.setItem('userId',response.id)
              this.router.navigate(['/main-dashboard'])
-        },
-        (Catcherror)=>{
-          console.log("Error",Catcherror.error)
-          this.SpinnerService.hide();
-          this.toastr.error(Catcherror.error.message)
-          this.loginOnSubmit = false;
-        }
-        );
+       // },
+        // (Catcherror)=>{
+        //   console.log("Error",Catcherror.error)
+        //   this.SpinnerService.hide();
+        //   this.toastr.error(Catcherror.error.message)
+        //   this.loginOnSubmit = false;
+        // }
+      //  );
       }
 
   }
